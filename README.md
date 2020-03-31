@@ -1,23 +1,23 @@
 # TO-DO List
 **Map Data**
 1. Format Data for the purpose of our assignment
-    a. Attendee Zip Codes (for inputing map coordinates)
-    b. Vendor Zip Codes (for inputing map coordinates)
-    c. What is the likelihood that you will choose these products if you find them at your grocery store or local farmer's market? (for interpreting line thickness)
-    d. Download map picture from website provided in one of the assignments
-2. Code gridlines to later match the picture from the website (map)
-3. Display the coordinates provided by vendor and attendee zip codes
-4. Link vendor coordinates to attendee coordinates
-5. Display tooltip that displays # of Attendees in that zip code, Location, and (average) overall rating
-6. Make a legend appear to explain what each unique data point means
-7. Write code that allows you to filter for:
-    a. Vendor Zip Code
-    b. Atendee Zip Code
-    c. State
-    d. Vendor Type
+    *  Attendee Zip Codes (for inputing map coordinates)
+    *  Vendor Zip Codes (for inputing map coordinates)
+    *  What is the likelihood that you will choose these products if you find them at your grocery store or local farmer's market? (for interpreting line thickness)
+    *  Download map picture from website provided in one of the assignments
+1. Code gridlines to later match the picture from the website (map)
+1. Display the coordinates provided by vendor and attendee zip codes
+1. Link vendor coordinates to attendee coordinates
+1. Display tooltip that displays # of Attendees in that zip code, Location, and (average) overall rating
+1. Make a legend appear to explain what each unique data point means
+1. Write code that allows you to filter for:
+    *  Vendor Zip Code
+    *  Atendee Zip Code
+    *  State
+    *  Vendor Type
 
 **Bubble Chart**
-1. 
+1. <Insert Data>
 
 
 
