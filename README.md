@@ -1,9 +1,9 @@
 # TO-DO List
 **Map Data**
 1. Format Data for the purpose of our assignment
-    *  Attendee Zip Codes (for inputing map coordinates)
-    *  Vendor Zip Codes (for inputing map coordinates)
-    *  What is the likelihood that you will choose these products if you find them at your grocery store or local farmer's market? (for interpreting line thickness)
+    *  Attendee Zip Codes (for inputing map coordinates) - **DONE**
+    *  Vendor Zip Codes (for inputing map coordinates) 
+    *  What is the likelihood that you will choose these products if you find them at your grocery store or local farmer's market? (for interpreting line thickness) **DONE**
     *  Download map picture from website provided in one of the assignments
 1. Code gridlines to later match the picture from the website (map)
 1. Display the coordinates provided by vendor and attendee zip codes
