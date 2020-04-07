@@ -19,15 +19,14 @@ d3.json("us.json", function(us) {
   //Error
   d3.csv("data/Attendee Information - 2019.csv", function(Attendee) {
     console.log(Attendee);
-    var a = Attendee.map(function(att) {
-      return {
-        col2: att.Attendee_Zip_Code
-      }
+
+    var zipCodeList = [];  
+    Attendee.forEach(function(row) {
+          zipCodeList.push(Object.values(row)[2]);
     });
 
-
-
-    drawMap(us, Attendee);
+    console.log(zipCodeList);
+    drawMap(us, Attendee, zipCodeList);
   });
 });
 
@@ -36,7 +35,7 @@ var brush = d3
   .on("start brush", highlight)
   .on("end", brushend);
 
-function drawMap(us, Attendee) {
+function drawMap(us, Attendee, zipCodeList) {
   var mapGroup = svg.append("g").attr("class", "mapGroup");
 
   mapGroup
@@ -61,7 +60,7 @@ function drawMap(us, Attendee) {
 
     var lines = svg
     .selectAll("lines")
-    .data(topojson.feature(Attendee, Attendee.Attendee_Zip_Code))
+    .data(topojson.feature(Attendee, zipCodeList))
     .enter()
     .append("lines")
     .attr("class", "Attendee")
