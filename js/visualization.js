@@ -15,8 +15,18 @@ var projection = d3
 var path = d3.geoPath().projection(projection);
 
 d3.json("us.json", function(us) {
+  console.log(us);
   //Error
   d3.csv("data/Attendee Information - 2019.csv", function(Attendee) {
+    console.log(Attendee);
+    var a = Attendee.map(function(att) {
+      return {
+        col2: att.Attendee_Zip_Code
+      }
+    });
+
+
+
     drawMap(us, Attendee);
   });
 });
@@ -49,11 +59,11 @@ function drawMap(us, Attendee) {
     .attr("id", "state-borders")
     .attr("d", path);
 
-    /*var circles = svg
-    .selectAll("circle")
-    .data(Attendee)
+    var lines = svg
+    .selectAll("lines")
+    .data(topojson.feature(Attendee, Attendee.Attendee_Zip_Code))
     .enter()
-    .append("circle")
+    .append("lines")
     .attr("class", "Attendee")
     .attr("cx", function(d) {
       return projection([d.lon, d.lat])[0];
@@ -61,7 +71,7 @@ function drawMap(us, Attendee) {
     .attr("cy", function(d) {
       return projection([d.lon, d.lat])[1];
     })
-    .attr("r", 8);*/
+    .attr("r", 8);
 
 
   svg.append("g").call(brush);
