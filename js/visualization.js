@@ -49,5 +49,41 @@ function drawMap(us, Attendee) {
     .attr("id", "state-borders")
     .attr("d", path);
 
+    /*var circles = svg
+    .selectAll("circle")
+    .data(Attendee)
+    .enter()
+    .append("circle")
+    .attr("class", "Attendee")
+    .attr("cx", function(d) {
+      return projection([d.lon, d.lat])[0];
+    })
+    .attr("cy", function(d) {
+      return projection([d.lon, d.lat])[1];
+    })
+    .attr("r", 8);*/
+
+
   svg.append("g").call(brush);
+}
+
+function highlight() {
+  if (d3.event.selection === null) return;
+
+  let [[x0, y0], [x1, y1]] = d3.event.selection;
+
+  circles = d3.selectAll("circle");
+
+  circles.classed(
+    "selected",
+    d =>
+      x0 <= projection([d.lon, d.lat])[0] &&
+      projection([d.lon, d.lat])[0] <= x1 &&
+      y0 <= projection([d.lon, d.lat])[1] &&
+      projection([d.lon, d.lat])[1] <= y1
+  );
+}
+
+function brushend() {
+  console.log("end");
 }
