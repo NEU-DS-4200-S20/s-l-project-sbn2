@@ -5,12 +5,12 @@
     *  Vendor Zip Codes (for inputing map coordinates) 
     *  What is the likelihood that you will choose these products if you find them at your grocery store or local farmer's market? (for interpreting line thickness) **DONE**
     *  Download map picture from website provided in one of the assignments
-1. Code gridlines to later match the picture from the website (map)
-1. Display the coordinates provided by vendor and attendee zip codes
-1. Link vendor coordinates to attendee coordinates
-1. Display tooltip that displays # of Attendees in that zip code, Location, and (average) overall rating
-1. Make a legend appear to explain what each unique data point means
-1. Write code that allows you to filter for:
+1. Code gridlines to later match the picture from the website (map) **DONE**
+1. Display the coordinates provided by vendor and attendee zip codes **MISSING**
+1. Link vendor coordinates to attendee coordinates **MISSING**
+1. Display tooltip that displays # of Attendees in that zip code, Location, and (average) overall rating **MISSING**
+1. Make a legend appear to explain what each unique data point means **MISSING**
+1. Write code that allows you to filter for: **MISSING**
     *  Vendor Zip Code
     *  Atendee Zip Code
     *  State

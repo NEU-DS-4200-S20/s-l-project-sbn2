@@ -1,43 +1,89 @@
-// Immediately Invoked Function Expression to limit access to our 
-// variables and prevent 
-((() => {
+var width = 960;
+var height = 500;
 
-  console.log("Hello, world!");
-  //Based off of this gist
-  //https://bl.ocks.org/d3indepth/60f490c6abd7be53d4aa39818e11d273
+var svg = d3
+  .select("#map-container")
+  .append("svg")
+  .attr("width", width)
+  .attr("height", height);
 
-  var geojson = {}
+var projection = d3
+  .geoAlbersUsa()
+  .translate([width / 2, height / 2])
+  .scale(width);
 
-  var context = d3.select('#content canvas')
-    .node()
-    .getContext('2d');
+var path = d3.geoPath().projection(projection);
 
-  var projection = d3.geoEquirectangular()
-    .scale(5000) //This zooms it in - not sure the significance of this value I just guessed and checked
-    .rotate([70, -40]); // this is equal to the center point I believe - Lon/Lat of Boston
+d3.json("us.json", function(us) {
+  //Error
+  d3.csv("data/Attendee Information - 2019.csv", function(Attendee) {
+    drawMap(us, Attendee);
+  });
+});
 
-  var geoGenerator = d3.geoPath()
-    .projection(projection)
-    .pointRadius(4)
-    .context(context);
+var brush = d3
+  .brush()
+  .on("start brush", highlight)
+  .on("end", brushend);
 
-  function update() {
-    context.clearRect(0, 0, 800, 600);
+function drawMap(us, Attendee) {
+  var mapGroup = svg.append("g").attr("class", "mapGroup");
 
-    context.lineWidth = 0.5;
-    context.strokeStyle = '#333';
+  mapGroup
+    .append("g")
+    // .attr("id", "states")
+    .selectAll("path")
+    .data(topojson.feature(us, us.objects.states).features)
+    .enter()
+    .append("path")
+    .attr("d", path)
+    .attr("class", "states");
 
-    context.beginPath();
-    geoGenerator({ type: 'FeatureCollection', features: geojson.features })
-    context.stroke();
-  }
+  mapGroup
+    .append("path")
+    .datum(
+      topojson.mesh(us, us.objects.states, function(a, b) {
+        return a !== b;
+      })
+    )
+    .attr("id", "state-borders")
+    .attr("d", path);
 
-  // REQUEST DATA
-  // Need to find a way to merge multiple geojson 
-  // https://github.com/mapbox/geojson-merge
-  d3.json('zip/ma_massachusetts_zip_codes_geo.min.json', function (err, json) {
-    geojson = json;
-    window.setInterval(update, 50);
-    update(json);
-  })
-})());
+    /*var circles = svg
+    .selectAll("circle")
+    .data(Attendee)
+    .enter()
+    .append("circle")
+    .attr("class", "Attendee")
+    .attr("cx", function(d) {
+      return projection([d.lon, d.lat])[0];
+    })
+    .attr("cy", function(d) {
+      return projection([d.lon, d.lat])[1];
+    })
+    .attr("r", 8);*/
+
+
+  svg.append("g").call(brush);
+}
+
+function highlight() {
+  if (d3.event.selection === null) return;
+
+  let [[x0, y0], [x1, y1]] = d3.event.selection;
+
+  circles = d3.selectAll("circle");
+
+  circles.classed(
+    "selected",
+    d =>
+      x0 <= projection([d.lon, d.lat])[0] &&
+      projection([d.lon, d.lat])[0] <= x1 &&
+      y0 <= projection([d.lon, d.lat])[1] &&
+      projection([d.lon, d.lat])[1] <= y1
+  );
+}
+
+function brushend() {
+  console.log("end");
+}
