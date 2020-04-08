@@ -98,7 +98,6 @@ function highlight() {
 
   circles = d3.selectAll("circle");
 
-  console.log(x0 <= projection([d.Longitude, d.Latitude])[0]);
   circles.classed(
     "selected",
     d =>
