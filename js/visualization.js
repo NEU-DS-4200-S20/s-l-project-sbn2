@@ -73,17 +73,17 @@ function drawMap(us, attendee, zipCodeList) {
 */
 // set projection parameters
     var lines = svg
-    .selectAll("lines")
+    .selectAll("circle")
     .data(attendee).enter()
-    .append("lines")
+    .append("circle")
     .attr("class", "attendee")
     .attr("cx", function(d) {
-      console.log(d.Latitude);
-      console.log(projection([0, 0]));
-      return projection([d.Latitude, d.Longitude])[0];
+      //console.log(d.Latitude);
+      //console.log(projection([0, 0]));
+      return projection([d.Longitude, d.Latitude])[0];
     })
     .attr("cy", function(d) {
-      return projection([d.Latitude, d.Longitude])[1];
+      return projection([d.Longitude, d.Latitude])[1];
     })
     .attr("r", 8);
 
@@ -100,10 +100,10 @@ function highlight() {
   circles.classed(
     "selected",
     d =>
-      x0 <= projection([d.lon, d.lat])[0] &&
-      projection([d.lon, d.lat])[0] <= x1 &&
-      y0 <= projection([d.lon, d.lat])[1] &&
-      projection([d.lon, d.lat])[1] <= y1
+      x0 <= projection([d.Longitude, d.Latitude])[0] &&
+      projection([d.Longitude, d.Latitude])[0] <= x1 &&
+      y0 <= projection([d.Longitude, d.Latitude])[1] &&
+      projection([d.Longitude, d.Latitude])[1] <= y1
   );
 }
 
