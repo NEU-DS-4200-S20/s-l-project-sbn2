@@ -17,16 +17,20 @@ var path = d3.geoPath().projection(projection);
 d3.json("us.json", function(us) {
   console.log(us);
   //Error
-  d3.csv("data/Attendee Information - 2019.csv", function(Attendee) {
-    console.log(Attendee);
+  d3.csv("data/Attendee Information Ver 2.csv", function(attendee) {
+    console.log(attendee);
 
     var zipCodeList = [];  
-    Attendee.forEach(function(row) {
-          zipCodeList.push(Object.values(row)[2]);
+    attendee.forEach(function(row) {
+          var zipCodePair = [];
+          zipCodePair.push(parseFloat(Object.values(row)[1]));
+          zipCodePair.push(parseFloat(Object.values(row)[2]));
+          //console.log(projection(zipCodePair));
+          zipCodeList.push(zipCodePair);
     });
 
     console.log(zipCodeList);
-    drawMap(us, Attendee, zipCodeList);
+    drawMap(us, attendee, zipCodeList);
   });
 });
 
@@ -35,7 +39,7 @@ var brush = d3
   .on("start brush", highlight)
   .on("end", brushend);
 
-function drawMap(us, Attendee, zipCodeList) {
+function drawMap(us, attendee, zipCodeList) {
   var mapGroup = svg.append("g").attr("class", "mapGroup");
 
   mapGroup
@@ -56,22 +60,32 @@ function drawMap(us, Attendee, zipCodeList) {
       })
     )
     .attr("id", "state-borders")
-    .attr("d", path);
+    .attr("d", path); 
 
+    //svg.append("circle").attr("r",5).attr("transform", function() {return "translate(" + projection([-75,43]) + ")";});
+
+    /*var lines = svg.selectAll("circles.points")
+.data(zipCodeList)
+.enter()
+.append("circle")
+.attr("r",5)
+.attr("transform", function(d) {return "translate(" + projection([d.long,d.lat]) + ")";});
+*/
+// set projection parameters
     var lines = svg
     .selectAll("lines")
-    .data(topojson.feature(Attendee, zipCodeList))
-    .enter()
+    .data(attendee).enter()
     .append("lines")
-    .attr("class", "Attendee")
+    .attr("class", "attendee")
     .attr("cx", function(d) {
-      return projection([d.lon, d.lat])[0];
+      console.log(d.Latitude);
+      console.log(projection([0, 0]));
+      return projection([d.Latitude, d.Longitude])[0];
     })
     .attr("cy", function(d) {
-      return projection([d.lon, d.lat])[1];
+      return projection([d.Latitude, d.Longitude])[1];
     })
     .attr("r", 8);
-
 
   svg.append("g").call(brush);
 }
