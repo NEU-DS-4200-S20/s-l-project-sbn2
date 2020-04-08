@@ -42,6 +42,7 @@ var brush = d3
 function drawMap(us, attendee, zipCodeList) {
   var mapGroup = svg.append("g").attr("class", "mapGroup");
 
+
   mapGroup
     .append("g")
     // .attr("id", "states")
@@ -72,7 +73,7 @@ function drawMap(us, attendee, zipCodeList) {
 .attr("transform", function(d) {return "translate(" + projection([d.long,d.lat]) + ")";});
 */
 // set projection parameters
-    var lines = svg
+    var circles = svg
     .selectAll("circle")
     .data(attendee).enter()
     .append("circle")
@@ -85,7 +86,7 @@ function drawMap(us, attendee, zipCodeList) {
     .attr("cy", function(d) {
       return projection([d.Longitude, d.Latitude])[1];
     })
-    .attr("r", 8);
+    .attr("r", 4);
 
   svg.append("g").call(brush);
 }
@@ -97,6 +98,7 @@ function highlight() {
 
   circles = d3.selectAll("circle");
 
+  console.log(x0 <= projection([d.Longitude, d.Latitude])[0]);
   circles.classed(
     "selected",
     d =>
@@ -104,7 +106,7 @@ function highlight() {
       projection([d.Longitude, d.Latitude])[0] <= x1 &&
       y0 <= projection([d.Longitude, d.Latitude])[1] &&
       projection([d.Longitude, d.Latitude])[1] <= y1
-  );
+  );//.style("fill", d3.color("steelblue") );
 }
 
 function brushend() {
