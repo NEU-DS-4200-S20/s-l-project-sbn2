@@ -25,7 +25,6 @@ d3.json("us.json", function(us) {
           var zipCodePair = [];
           zipCodePair.push(parseFloat(Object.values(row)[1]));
           zipCodePair.push(parseFloat(Object.values(row)[2]));
-          //console.log(projection(zipCodePair));
           zipCodeList.push(zipCodePair);
     });
 
@@ -45,7 +44,6 @@ function drawMap(us, attendee, zipCodeList) {
 
   mapGroup
     .append("g")
-    // .attr("id", "states")
     .selectAll("path")
     .data(topojson.feature(us, us.objects.states).features)
     .enter()
@@ -63,24 +61,13 @@ function drawMap(us, attendee, zipCodeList) {
     .attr("id", "state-borders")
     .attr("d", path); 
 
-    //svg.append("circle").attr("r",5).attr("transform", function() {return "translate(" + projection([-75,43]) + ")";});
-
-    /*var lines = svg.selectAll("circles.points")
-.data(zipCodeList)
-.enter()
-.append("circle")
-.attr("r",5)
-.attr("transform", function(d) {return "translate(" + projection([d.long,d.lat]) + ")";});
-*/
-// set projection parameters
     var circles = svg
     .selectAll("circle")
     .data(attendee).enter()
     .append("circle")
     .attr("class", "attendee")
     .attr("cx", function(d) {
-      //console.log(d.Latitude);
-      //console.log(projection([0, 0]));
+
       return projection([d.Longitude, d.Latitude])[0];
     })
     .attr("cy", function(d) {
