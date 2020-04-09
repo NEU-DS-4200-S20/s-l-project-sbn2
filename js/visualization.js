@@ -92,7 +92,7 @@ function highlight() {
       projection([d.Longitude, d.Latitude])[0] <= x1 &&
       y0 <= projection([d.Longitude, d.Latitude])[1] &&
       projection([d.Longitude, d.Latitude])[1] <= y1
-  );//.style("fill", d3.color("steelblue") );
+  );
 }
 
 function brushend() {
