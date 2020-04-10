@@ -18,7 +18,7 @@ d3.json("us.json", function(us) {
   console.log(us);
   //Error
   d3.csv("data/Attendee Information Ver 2.csv", function(attendee) {
-    console.log(attendee);
+    d3.csv("data/Vendor Information Ver 2.csv", function(vendor) { 
 
     var zipCodeList = [];  
     attendee.forEach(function(row) {
@@ -28,9 +28,18 @@ d3.json("us.json", function(us) {
           zipCodeList.push(zipCodePair);
     });
 
+    var vendorCodeList = [];
+    vendor.forEach(function(row) {
+          var zipCodePair = [];
+          zipCodePair.push(parseFloat(Object.values(row)[2]));
+          zipCodePair.push(parseFloat(Object.values(row)[3]));
+          vendorCodeList.push(zipCodePair);
+    });
     console.log(zipCodeList);
-    drawMap(us, attendee, zipCodeList);
+    console.log(vendorCodeList);
+    drawMap(us, attendee, zipCodeList, vendorCodeList);
   });
+});
 });
 
 var brush = d3
@@ -38,7 +47,7 @@ var brush = d3
   .on("start brush", highlight)
   .on("end", brushend);
 
-function drawMap(us, attendee, zipCodeList) {
+function drawMap(us, attendee, zipCodeList, vendorCodeList) {
   var mapGroup = svg.append("g").attr("class", "mapGroup");
 
 
@@ -92,7 +101,7 @@ function highlight() {
       projection([d.Longitude, d.Latitude])[0] <= x1 &&
       y0 <= projection([d.Longitude, d.Latitude])[1] &&
       projection([d.Longitude, d.Latitude])[1] <= y1
-  );//.style("fill", d3.color("steelblue") );
+  );
 }
 
 function brushend() {
