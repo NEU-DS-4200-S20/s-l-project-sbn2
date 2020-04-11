@@ -37,7 +37,7 @@ d3.json("us.json", function(us) {
     });
     console.log(zipCodeList);
     console.log(vendorCodeList);
-    drawMap(us, attendee, zipCodeList, vendorCodeList);
+    drawMap(us, attendee, vendor, zipCodeList, vendorCodeList);
   });
 });
 });
@@ -47,9 +47,8 @@ var brush = d3
   .on("start brush", highlight)
   .on("end", brushend);
 
-function drawMap(us, attendee, zipCodeList, vendorCodeList) {
+function drawMap(us, attendee, vendor, zipCodeList, vendorCodeList) {
   var mapGroup = svg.append("g").attr("class", "mapGroup");
-
 
   mapGroup
     .append("g")
@@ -71,6 +70,25 @@ function drawMap(us, attendee, zipCodeList, vendorCodeList) {
     .attr("d", path); 
 
     var circles = svg
+    .selectAll("vendor.circle")
+    .data(vendor).enter()
+    .append("circle")
+    .attr("class", "vendor")
+    .attr("cx", function(d) {
+
+      return projection([d.Longitude, d.Latitude])[0];
+    })
+    .attr("cy", function(d) {
+      return projection([d.Longitude, d.Latitude])[1];
+    })
+    .attr("r", 4);
+    //.style("fill", fillFunction);
+
+    svg.append("g").call(brush);
+
+   
+
+    var circles = svg
     .selectAll("circle")
     .data(attendee).enter()
     .append("circle")
@@ -83,6 +101,7 @@ function drawMap(us, attendee, zipCodeList, vendorCodeList) {
       return projection([d.Longitude, d.Latitude])[1];
     })
     .attr("r", 4);
+    //.style("fill", fillFunction);
 
   svg.append("g").call(brush);
 }
