@@ -97,3 +97,18 @@ h1, h2, h3 {
 circle.selected {
 	fill: red;
   }
+
+  .background {
+	fill: none;
+	pointer-events: all; 
+  }
+  
+  .feature {
+	fill: #ccc;
+	cursor: pointer;
+  }
+  
+  .feature.active {
+	fill: red;
+  }
+

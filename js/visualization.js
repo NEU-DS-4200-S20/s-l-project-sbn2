@@ -1,11 +1,29 @@
-var width = 960;
+var width =  960;
 var height = 500;
+var active = d3.select(null);
+
+
+//svg.call(zoom)
+
+var zoom = d3.zoom().on("zoom", function() {
+  svg.attr("transform", d3.event.transform); 
+  console.log(d3.event.transform)
+});
 
 var svg = d3
   .select("#map-container")
   .append("svg")
   .attr("width", width)
-  .attr("height", height);
+  .attr("height", height)
+  .call(d3.zoom().on("zoom", function() {
+    svg.attr("transform", d3.event.transform); 
+    console.log(d3.event.transform)
+  }))
+  .on("dblclick.zoom", function(){
+    svg.attr("transform", d3.event.transform); 
+  })
+  .append("g");
+
 
 var projection = d3
   .geoAlbersUsa()
@@ -13,6 +31,7 @@ var projection = d3
   .scale(width);
 
 var path = d3.geoPath().projection(projection);
+
 
 d3.json("us.json", function(us) {
   console.log(us);
@@ -41,6 +60,7 @@ d3.json("us.json", function(us) {
   });
 });
 });
+
 
 var brush = d3
   .brush()
