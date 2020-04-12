@@ -1,6 +1,7 @@
 var width =  960;
 var height = 500;
 var active = d3.select(null);
+var r = 5;
 
 
 //svg.call(zoom)
@@ -17,7 +18,8 @@ var svg = d3
   .attr("height", height)
   .call(d3.zoom().on("zoom", function() {
     svg.attr("transform", d3.event.transform); 
-    console.log(d3.event.transform)
+    console.log(d3.event.transform);
+    d3.selectAll("circle").transition().duration(500).attr("r", r/d3.event.transform.k);
   }))
   .on("dblclick.zoom", function(){
     svg.attr("transform", d3.event.transform); 
