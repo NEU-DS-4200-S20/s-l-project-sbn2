@@ -104,6 +104,8 @@ h1, h2, h3 {
 	fill: blue;
 }
 
+
+
 circle.selected {
 	fill: red;
   }

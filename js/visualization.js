@@ -69,8 +69,18 @@ function drawMap(us, attendee, vendor, zipCodeList, vendorCodeList) {
     .attr("id", "state-borders")
     .attr("d", path); 
 
-    var circles = svg
-    .selectAll("vendor.circle")
+    let mapData = [];
+    for(let d of attendee ) {
+      let temp = {label: "attendee", value: d}
+      mapData.push(temp);
+    }
+    for(let d of vendor ) {
+      let temp = {label: "vendor", value: d}
+      mapData.push(temp);
+    }
+
+    /*var circles = svg
+    .selectAll("vendor_circle")
     .data(vendor).enter()
     .append("circle")
     .attr("class", "vendor")
@@ -84,23 +94,22 @@ function drawMap(us, attendee, vendor, zipCodeList, vendorCodeList) {
     .attr("r", 4);
     //.style("fill", fillFunction);
 
-    svg.append("g").call(brush);
+    svg.append("g").call(brush);*/
 
    
-
     var circles = svg
     .selectAll("circle")
-    .data(attendee).enter()
+    .data(mapData).enter()
     .append("circle")
-    .attr("class", "attendee")
+    .attr("class", function(d) {return d.label})
     .attr("cx", function(d) {
 
-      return projection([d.Longitude, d.Latitude])[0];
+      return projection([d.value.Longitude, d.value.Latitude])[0];
     })
     .attr("cy", function(d) {
-      return projection([d.Longitude, d.Latitude])[1];
+      return projection([d.value.Longitude, d.value.Latitude])[1];
     })
-    .attr("r", 4);
+    .attr("r", function(d) {if(d.label == "attendee") {return 4} else {return 4}});
     //.style("fill", fillFunction);
 
   svg.append("g").call(brush);
@@ -111,15 +120,21 @@ function highlight() {
 
   let [[x0, y0], [x1, y1]] = d3.event.selection;
 
+  //vendorCircles =d3.selectAll("vendor_cricle");
+  //vendorCircles.classed("selected", (d) => true);
+
   circles = d3.selectAll("circle");
+  //circles_temp = d3.selectAll("circle");
+  //console.log(circles_temp);
+  console.log(circles);
 
   circles.classed(
     "selected",
     d =>
-      x0 <= projection([d.Longitude, d.Latitude])[0] &&
-      projection([d.Longitude, d.Latitude])[0] <= x1 &&
-      y0 <= projection([d.Longitude, d.Latitude])[1] &&
-      projection([d.Longitude, d.Latitude])[1] <= y1
+      x0 <= projection([d.value.Longitude, d.value.Latitude])[0] &&
+      projection([d.value.Longitude, d.value.Latitude])[0] <= x1 &&
+      y0 <= projection([d.value.Longitude, d.value.Latitude])[1] &&
+      projection([d.value.Longitude, d.value.Latitude])[1] <= y1
   );
 }
 
