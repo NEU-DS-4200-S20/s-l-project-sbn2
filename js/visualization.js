@@ -13,14 +13,15 @@ var projection = d3
   .scale(width);
 
 var path = d3.geoPath().projection(projection);
+var selected = [];
 
 d3.json("us.json", function(us) {
   console.log(us);
   //Error
   d3.csv("data/Attendee Information Ver 2.csv", function(attendee) {
-    d3.csv("data/Vendor Information Ver 2.csv", function(vendor) { 
+    d3.csv("data/Vendor Information Ver 2.csv", function(vendor) {
 
-    var zipCodeList = [];  
+    var zipCodeList = [];
     attendee.forEach(function(row) {
           var zipCodePair = [];
           zipCodePair.push(parseFloat(Object.values(row)[1]));
@@ -68,7 +69,7 @@ function drawMap(us, attendee, zipCodeList, vendorCodeList) {
       })
     )
     .attr("id", "state-borders")
-    .attr("d", path); 
+    .attr("d", path);
 
     var circles = svg
     .selectAll("circle")
@@ -96,14 +97,48 @@ function highlight() {
 
   circles.classed(
     "selected",
-    d =>
-      x0 <= projection([d.Longitude, d.Latitude])[0] &&
+    function(d) {
+      var bool = x0 <= projection([d.Longitude, d.Latitude])[0] &&
       projection([d.Longitude, d.Latitude])[0] <= x1 &&
       y0 <= projection([d.Longitude, d.Latitude])[1] &&
       projection([d.Longitude, d.Latitude])[1] <= y1
+      if (bool) {
+        selected.push(d);
+      }
+      return bool;
+    }
+
   );
+
+
+}
+
+  function chart(selector, data) {
+    console.log(data);
+    let table = null;
+    let table = d3.select(selector).append("table").classed("Attendee Information", true);
+  let tableHeaders = data.keys();
+  var thead = d3.selectAll("th")
+  .data(tableHeaders)
+console.log(thead);
+  table.append(thead).enter().append("th")
+  .text(function(d) {
+      return d;
+});
+  var tbody = table.data(data)
+  .enter().append("tr")
+  .selectAll("td")
+  .data(function(d){
+    return [d.Zip,d.City,d.State,d.Country];})
+table.append(tbody).enter().append("td")
+.text(function(d){
+     return d;
+});
+  console.log(table.selectAll("tr"));
 }
 
 function brushend() {
+  d3.select("tr").remove();
+  chart("#table", selected);
   console.log("end");
 }
