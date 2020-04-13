@@ -1,15 +1,8 @@
 var width =  960;
 var height = 500;
-var active = d3.select(null);
 var r = 5;
 
-
-//svg.call(zoom)
-
-var zoom = d3.zoom().on("zoom", function() {
-  svg.attr("transform", d3.event.transform); 
-  console.log(d3.event.transform)
-});
+var zoom = d3.zoom()
 
 var svg = d3
   .select("#map-container")
@@ -18,11 +11,12 @@ var svg = d3
   .attr("height", height)
   .call(d3.zoom().on("zoom", function() {
     svg.attr("transform", d3.event.transform); 
-    console.log(d3.event.transform);
+    //console.log(d3.event.transform);
     d3.selectAll("circle").transition().duration(500).attr("r", r/d3.event.transform.k);
   }))
   .on("dblclick.zoom", function(){
-    svg.attr("transform", d3.event.transform); 
+    svg.attr("transform", d3.zoomIdentity); //attempt to reset zoom scale on dblclick - will be figured out by final delivery
+    d3.selectAll("circle").transition().duration(500).attr("r", r); //this works to reset the circle radius
   })
   .append("g");
 
@@ -58,20 +52,18 @@ d3.json("us.json", function(us) {
     });
     console.log(zipCodeList);
     console.log(vendorCodeList);
-    drawMap(us, attendee, zipCodeList, vendorCodeList);
+    drawMap(us, attendee, vendor, zipCodeList, vendorCodeList);
   });
 });
 });
-
 
 var brush = d3
   .brush()
   .on("start brush", highlight)
   .on("end", brushend);
 
-function drawMap(us, attendee, zipCodeList, vendorCodeList) {
+function drawMap(us, attendee, vendor, zipCodeList, vendorCodeList) {
   var mapGroup = svg.append("g").attr("class", "mapGroup");
-
 
   mapGroup
     .append("g")
@@ -92,19 +84,46 @@ function drawMap(us, attendee, zipCodeList, vendorCodeList) {
     .attr("id", "state-borders")
     .attr("d", path); 
 
-    var circles = svg
-    .selectAll("circle")
-    .data(attendee).enter()
-    .append("circle")
-    .attr("class", "attendee")
-    .attr("cx", function(d) {
+    let mapData = [];
+    for(let d of attendee ) {
+      let temp = {label: "attendee", value: d}
+      mapData.push(temp);
+    }
+    for(let d of vendor ) {
+      let temp = {label: "vendor", value: d}
+      mapData.push(temp);
+    }
 
+    /*var circles = svg
+    .selectAll("vendor_circle")
+    .data(vendor).enter()
+    .append("circle")
+    .attr("class", "vendor")
+    .attr("cx", function(d) {
       return projection([d.Longitude, d.Latitude])[0];
     })
     .attr("cy", function(d) {
       return projection([d.Longitude, d.Latitude])[1];
     })
     .attr("r", 4);
+    //.style("fill", fillFunction);
+    svg.append("g").call(brush);*/
+
+   
+    var circles = svg
+    .selectAll("circle")
+    .data(mapData).enter()
+    .append("circle")
+    .attr("class", function(d) {return d.label})
+    .attr("cx", function(d) {
+
+      return projection([d.value.Longitude, d.value.Latitude])[0];
+    })
+    .attr("cy", function(d) {
+      return projection([d.value.Longitude, d.value.Latitude])[1];
+    })
+    .attr("r", function(d) {if(d.label == "attendee") {return 4} else {return 4}});
+    //.style("fill", fillFunction);
 
   svg.append("g").call(brush);
 }
@@ -114,15 +133,21 @@ function highlight() {
 
   let [[x0, y0], [x1, y1]] = d3.event.selection;
 
+  //vendorCircles =d3.selectAll("vendor_cricle");
+  //vendorCircles.classed("selected", (d) => true);
+
   circles = d3.selectAll("circle");
+  //circles_temp = d3.selectAll("circle");
+  //console.log(circles_temp);
+  console.log(circles);
 
   circles.classed(
     "selected",
     d =>
-      x0 <= projection([d.Longitude, d.Latitude])[0] &&
-      projection([d.Longitude, d.Latitude])[0] <= x1 &&
-      y0 <= projection([d.Longitude, d.Latitude])[1] &&
-      projection([d.Longitude, d.Latitude])[1] <= y1
+      x0 <= projection([d.value.Longitude, d.value.Latitude])[0] &&
+      projection([d.value.Longitude, d.value.Latitude])[0] <= x1 &&
+      y0 <= projection([d.value.Longitude, d.value.Latitude])[1] &&
+      projection([d.value.Longitude, d.value.Latitude])[1] <= y1
   );
 }
 
