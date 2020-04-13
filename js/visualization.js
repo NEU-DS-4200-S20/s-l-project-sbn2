@@ -94,21 +94,6 @@ function drawMap(us, attendee, vendor, zipCodeList, vendorCodeList) {
       mapData.push(temp);
     }
 
-    /*var circles = svg
-    .selectAll("vendor_circle")
-    .data(vendor).enter()
-    .append("circle")
-    .attr("class", "vendor")
-    .attr("cx", function(d) {
-      return projection([d.Longitude, d.Latitude])[0];
-    })
-    .attr("cy", function(d) {
-      return projection([d.Longitude, d.Latitude])[1];
-    })
-    .attr("r", 4);
-    //.style("fill", fillFunction);
-    svg.append("g").call(brush);*/
-
    
     var circles = svg
     .selectAll("circle")

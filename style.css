@@ -77,6 +77,12 @@ h1, h2, h3 {
 		box-shadow:4px 4px 10px rgba(0,0,0,0.8);
 	}
 }
+
+.vis-container {
+	display: flex;
+	flex-wrap: wrap;
+  }
+  
 .states {
   fill: #aaa;
 }
@@ -93,6 +99,12 @@ h1, h2, h3 {
 .attendee {
 	fill: orange;
   }
+
+.vendor {
+	fill: blue;
+}
+
+
 
 circle.selected {
 	fill: red;
