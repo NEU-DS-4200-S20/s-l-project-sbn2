@@ -2,24 +2,21 @@ var width =  960;
 var height = 500;
 var r = 5;
 
-var zoom = d3.zoom()
+var zoom = d3.zoom();
 
 var svg = d3
   .select("#map-container")
   .append("svg")
   .attr("width", width)
   .attr("height", height)
-  .call(d3.zoom().on("zoom", function() {
+  .append("g")
+  .call(zoom.on("zoom", function() {
     svg.attr("transform", d3.event.transform); 
-    //console.log(d3.event.transform);
     d3.selectAll("circle").transition().duration(500).attr("r", r/d3.event.transform.k);
   }))
   .on("dblclick.zoom", function(){
-    svg.attr("transform", d3.zoomIdentity); //attempt to reset zoom scale on dblclick - will be figured out by final delivery
-    d3.selectAll("circle").transition().duration(500).attr("r", r); //this works to reset the circle radius
-  })
-  .append("g");
-
+    svg.transition().duration(750).call(zoom.transform, d3.zoomIdentity);
+  });
 
 var projection = d3
   .geoAlbersUsa()
