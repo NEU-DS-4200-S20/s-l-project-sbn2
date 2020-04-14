@@ -11,10 +11,13 @@ var projection = d3
   .geoAlbersUsa()
   .translate([width / 2, height / 2])
   .scale(width);
-
+var table = d3.select("#table").append("table").classed("Attendee Information", true);
+table.append("thead");
+table.append("tbody");
 var path = d3.geoPath().projection(projection);
 var selected = [];
-
+var filtData = [];
+var filtDataZips = [];
 d3.json("us.json", function(us) {
   console.log(us);
   //Error
@@ -107,38 +110,63 @@ function highlight() {
       }
       return bool;
     }
-
-  );
+    );
 
 
 }
 
   function chart(selector, data) {
-    console.log(data);
-    let table = null;
-    let table = d3.select(selector).append("table").classed("Attendee Information", true);
-  let tableHeaders = data.keys();
-  var thead = d3.selectAll("th")
-  .data(tableHeaders)
-console.log(thead);
-  table.append(thead).enter().append("th")
-  .text(function(d) {
-      return d;
-});
-  var tbody = table.data(data)
-  .enter().append("tr")
-  .selectAll("td")
-  .data(function(d){
-    return [d.Zip,d.City,d.State,d.Country];})
-table.append(tbody).enter().append("td")
-.text(function(d){
-     return d;
-});
-  console.log(table.selectAll("tr"));
+    selected = [];
+    console.log("Charted");
+
+    let tableHeaders = data.keys();
+    table.select("thead")
+        .selectAll("th")
+        .data(tableHeaders)
+        .enter().append("th")
+        .text(function(d) {
+            return d;
+          });
+    table.select("tbody")
+       .selectAll("tr").data(data)
+       .enter().append("tr")
+       .selectAll("td")
+       .data(function(d){
+         return [d[0].Zip,d[0].City,d[0].State,d[0].Country, d[0].Count];})
+         .enter().append("td")
+        .text(function(d){
+       	 return d;
+      });
 }
 
 function brushend() {
-  d3.select("tr").remove();
-  chart("#table", selected);
+  filtData = [];
+  filtDataZips = [];
+
+  console.log("Zips" + filtDataZips);
+  selected.forEach(function(row) {
+    var filtDataRow = [];
+    if (!(filtDataZips.includes(row.Zip))) {
+      filtDataRow.push(row);
+      filtDataZips.push(row.Zip);
+      filtDataRow[0].Count = 1;
+      filtData.push(filtDataRow);
+    } else {
+      filtData.forEach(function(row2) {
+          if (row.Zip == row2.Zip) {
+            filtDataRow = row2;
+          }
+        });
+        filtDataRow.Count += 1;
+    }
+  });
+
+  console.log("Tot");
+  console.log(filtData);
+
+  d3.select("#table").select("#tbody").selectAll("#tr").remove();
+
+  chart("#table", filtData);
+
   console.log("end");
 }
