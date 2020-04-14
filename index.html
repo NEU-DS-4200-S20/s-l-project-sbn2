@@ -4,13 +4,13 @@
 <!-- Metadata -->
 <head>
   <meta charset="utf-8">
-  
+
   <!-- Title -->
   <title>Project Team 2: Food Festival, DS 4200 S20</title>
-  
+
   <!-- CSS Styling -->
   <link rel="stylesheet" href="style.css">
- 
+
   <!-- Favicons -->
   <link rel="apple-touch-icon" sizes="180x180" href="favicons/apple-touch-icon.png">
   <link rel="icon" type="image/png" sizes="32x32" href="favicons/favicon-32x32.png">
@@ -29,55 +29,55 @@
 
   <!-- Update this with your GitHub repo URL -->
   <span id="forkongithub"><a href="https://github.com/NEU-DS-4200-S20/s-l-project-sbn2">Fork me on GitHub</a></span>
-  
+
   <!-- Your writeup goes here -->
   <div class = "content-column">
-  
+
     <h1>Project Team 2: Food Festival, DS 4200 S20</h1>
-    
+
     <p><strong>Prashan Parvani</strong>, <strong>Dylan Dasgupta</strong>, <strong>Bryson McClure</strong>, <strong>Tanner Lederman</strong></p>
-    
+
     <p>Service-Learning Course Project as part of <a href="https://canvas.instructure.com/courses/1781714">DS 4200: Information Presentation and Visualization</a>, taught by <a href="https://www.eecs.tufts.edu/~dcashm01/">Prof. Dylan Cashman</a>, <a href="https://visualization.khoury.northeastern.edu/">Data Visualization @ Khoury</a>, <a href="https://www.khoury.northeastern.edu/">Northeastern University</a>.</p>
-    
-    
+
+
     <h1>Motivation</h1>
-    
+
     <p><em>These diagrams will help the non-profit organization, SBN, uncover new insights regarding their uses (attendees and vendors) alike.</em></p>
-    
+
     <p><em>These diagrams should help attendees and vendors communicate with one another directly instead of using SBN as a third party to connect them.
       It will also help them discover new, potential sponors that will help them with their cause and events.</em></p>
 
-    
+
     <h1>Visualization</h1>
     
     <p><em>Below is a map visualization that produces a table with data</em></p>
-    
   </div>
 
     <div class="vis-container">
-      <div id="map-container" style="margin: auto;"></div>
+      <div id="map-container"></div>
+      <div id="chart-container"></div>
+      <div id="table"></div>
     </div>
-    
-  
+
   <!-- Your visualization here -->
   <div class="vis-holder">
-    <!-- Change viewbox to whatever you want, e.g. "0 0 1000 6000" This determines your aspect ratio and coordinate system -->    
+    <!-- Change viewbox to whatever you want, e.g. "0 0 1000 6000" This determines your aspect ratio and coordinate system -->
     <!-- Delete all the sample SVG code below after the viewbox to before the closing tag. Populate this part of the SVG with D3. -->
     <svg id="vis-svg"
       preserveAspectRatio="xMidYMid meet" class="marks" viewBox="0 0 821 50" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-      
+
       <script src="js/visualization.js"></script>
       <script src="https://d3js.org/topojson.v3.min.js"></script>
 
     <!-- Don't delete the closing tag! -->
     </svg>
     <script src="https://d3js.org/d3.v4.js"></script>
-    <!-- THIS DIV IS WHAT CONTAINS THE MAP --> 
+    <!-- THIS DIV IS WHAT CONTAINS THE MAP -->
     <div id="content">
       <canvas width="800" height="200"></canvas>
     </div>
   </div>
-  
+
   <!-- Your writeup goes here -->
   <div class = "content-column">
 
@@ -94,6 +94,7 @@
     <h1>Visualization explanation</h1>
     
     <p><em>We decided to go with a map because of the data we wanted to display. We were trying to come up with a fun, interactive visualization that would attract all kinds of users (attendees, vendors, and potential sponsors); whilst making it informative as well. The final concept we came up with was a map that would display the zip codes of attendees and vendors.</em><p> 
+
 
     <p><em>The idea is to highlight (or brush) a specific data point (or sets of data points). This will produce a table next to the map displaying more information regarding that data point. For attendees that displays INSERT DATA HERE. For vendors that displays INSERT DATA HERE. Users also will have the ability to zoom in and out of the map; providing more concise results. SCREENSHOTS WILL COME POST SPRINT 2; WHEN THE VIZ IS MORE COMPLETE.</em></p>
 
@@ -115,8 +116,6 @@
     
     <p><em>In the future if we still had the time and ability to keep working on this, we would like to incoprorate more information. First we'd like to implement a filtering option that would help you filter for just attendee data points, or vendor data points. Likewise, the ability to filter through specific vendor names so that only their location would highlight. We would also like to add more data points to the map. Right now we are only using the data from 2019. If we had more information on the vendors, then we'd be able to publish data from 2017, 2018, and etc. Another improvement would be to cut the initial view of the map and only display the Northeast region. However, if the user chose to, they can still zoom in to inspect it more closely, or zoom out to see more of USA. We would also like to label, and color each state for the aesthetic visual appeal.</em></p>
 
-
-    
     <h1>Acknowledgments</h1>
 
     <p><em>We would like to extend a special thanks to the teaching staff of DS 4200. The professor and TA's religiously helped us to accomplish our tasks. We definitely wouldn't have gotten as far as we did in our project without them. We would also like to acknowledge their tutorial code. It helped us a lot in setting up a basic framework for our code (listed below).</em></p>
@@ -126,9 +125,9 @@
       <li><a href="https://codepo8.github.io/css-fork-on-github-ribbon/#">Pure CSS responsive "Fork me on GitHub" ribbon</a> by Chris Heilmann.</li>
       <li><a href="https://github.com/NEU-DS-4200-S20-Staff/in-class-programming-d3-tutorial">D3 Tutorial Code</a> by Aditeya Pandey and Dylan Cashman.</li>
     </ul>
-    
+
   </div>
-  
+
   <!-- Scripts at the end avoid need for dealing with async, defer, or onload event handlers -->
   <script src="lib/d3.v4/d3.v4.js"></script>
   <script src="js/visualization.js"></script>
