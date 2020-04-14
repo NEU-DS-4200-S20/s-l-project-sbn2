@@ -1,25 +1,20 @@
 # TO-DO List
-**Map Data**
-1. Format Data for the purpose of our assignment
+
+1. Gather Data Sets into the Data Folder and format it for the purpose of our assignment
     *  Attendee Zip Codes (for inputing map coordinates) - **DONE**
-    *  Vendor Zip Codes (for inputing map coordinates) 
-    *  What is the likelihood that you will choose these products if you find them at your grocery store or local farmer's market? (for interpreting line thickness) **DONE**
-    *  Download map picture from website provided in one of the assignments
-1. Code gridlines to later match the picture from the website (map) **DONE**
-1. Display the coordinates provided by vendor and attendee zip codes **MISSING**
-1. Link vendor coordinates to attendee coordinates **MISSING**
-1. Display tooltip that displays # of Attendees in that zip code, Location, and (average) overall rating **MISSING**
-1. Make a legend appear to explain what each unique data point means **MISSING**
-1. Write code that allows you to filter for: **MISSING**
-    *  Vendor Zip Code
-    *  Atendee Zip Code
-    *  State
-    *  Vendor Type
-
-**Bubble Chart**
-1. <Insert Data>
-
-
+    *  Vendor Zip Codes (for inputing map coordinates) - **DONE**
+    *  Gather Columns for displaying the relevant information on the table - **DONE**
+    *  Convert Zip Code information to Longitude and Latitude to plot on the graph - **DONE**
+1. Display the coordinates provided by vendor and attendee zip codes **DONE**
+1. Display table when brushing a specific data point or set of data points - **DONE**
+1. Implement zooming function that allows users to zoom in and out of the map - **DONE**
+1. Implement Brushing and Linking between Map and Table **DONE**
+1. Make Table display information pertaining to the highlighted data point - **MISSING**
+1. Make Table disappear when unbrushing the data point - **DONE**
+1. Make Table reappear with new information when brushing different points - **DONE**
+1. Make Table remove old information from prior, now unbrushed, datapoints - **MISSING**
+1. Make a legend appear to explain what each unique data point means **DONE**
+1. When zooming, double clicking should reset the map and zooming again should reset aswell - **MISSING**
 
 
 

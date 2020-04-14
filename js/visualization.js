@@ -2,7 +2,17 @@ var width =  960;
 var height = 500;
 var r = 5;
 
-var zoom = d3.zoom();
+
+//make table for displaying data highlighted on map
+var table = d3.select("#table").append("table").classed("Attendee Information", true);
+table.append("thead");
+table.append("tbody");
+var selected = [];
+var filtData = [];
+var filtDataZips = [];
+
+//incorporate zoom function
+var zoom = d3.zoom()
 
 var svg = d3
   .select("#map-container")
@@ -25,7 +35,7 @@ var projection = d3
 
 var path = d3.geoPath().projection(projection);
 
-
+//read dataset to display datapoints on map
 d3.json("us.json", function(us) {
   console.log(us);
   //Error
@@ -53,12 +63,13 @@ d3.json("us.json", function(us) {
   });
 });
 });
-
+//make brush function
 var brush = d3
   .brush()
   .on("start brush", highlight)
   .on("end", brushend);
 
+//draws the map and all the data points
 function drawMap(us, attendee, vendor, zipCodeList, vendorCodeList) {
   var mapGroup = svg.append("g").attr("class", "mapGroup");
 
@@ -91,7 +102,7 @@ function drawMap(us, attendee, vendor, zipCodeList, vendorCodeList) {
       mapData.push(temp);
     }
 
-   
+   //displays datapoints as circles
     var circles = svg
     .selectAll("circle")
     .data(mapData).enter()
@@ -110,6 +121,7 @@ function drawMap(us, attendee, vendor, zipCodeList, vendorCodeList) {
   svg.append("g").call(brush);
 }
 
+//function that allows brushing to highlight datapoints 
 function highlight() {
   if (d3.event.selection === null) return;
 
@@ -123,15 +135,104 @@ function highlight() {
   //console.log(circles_temp);
 
   circles.classed(
-    "selected",
-    d =>
-      x0 <= projection([d.value.Longitude, d.value.Latitude])[0] &&
+    "selected", function(d) {
+    //d =>
+      var bool = x0 <= projection([d.value.Longitude, d.value.Latitude])[0] &&
       projection([d.value.Longitude, d.value.Latitude])[0] <= x1 &&
       y0 <= projection([d.value.Longitude, d.value.Latitude])[1] &&
       projection([d.value.Longitude, d.value.Latitude])[1] <= y1
+      if (bool) {
+        selected.push(d);
+      }
+      return bool;
+    }
   );
 }
 
+//sets up table formatting
+function chart(selector, data) {
+    selected = [];
+    console.log("Charted");
+
+    let tableHeaders = data.keys();
+    table.select("thead")
+        .selectAll("th")
+        .data(tableHeaders)
+        .enter().append("th")
+        .text(function(d) {
+            return d;
+          });
+    table.select("tbody")
+       .selectAll("tr").data(data)
+       .enter().append("tr")
+       .selectAll("td")
+       .data(function(d){
+         return [d[0].value.Zip,d[0].value.City,d[0].value.State,d[0].value.Country, d[0].Count];})
+         .enter().append("td")
+        .text(function(d){
+         return d;
+      });
+}
+
+//ends brushing
 function brushend() {
+  filtData = [];
+  filtDataZips = [];
+
+  console.log("Zips" + filtDataZips);
+  selected.forEach(function(row) {
+    var filtDataRow = [];
+    if (!(filtDataZips.includes(row.Zip))) {
+      filtDataRow.push(row);
+      filtDataZips.push(row.Zip);
+      filtDataRow[0].Count = 1;
+      filtData.push(filtDataRow);
+    } else {
+      filtData.forEach(function(row2) {
+          if (row.Zip == row2.Zip) {
+            filtDataRow = row2;
+          }
+        });
+        filtDataRow.Count += 1;
+    }
+  });
+
+  console.log("Tot");
+  console.log(filtData);
+
+  d3.select("#table").select("#tbody").selectAll("#tr").remove();
+
+  chart("#table", filtData);
+
   console.log("end");
 }
+
+var legend = svg
+  .append("g")
+  .attr("class", "legend")
+  .attr("width", 140)
+  .attr("height", 200)
+  .selectAll("g")
+  .data([
+    {'color': 'orange', 'label': 'Attendees'}, 
+    {'color': 'blue', 'label': 'Vendors'},
+    {'color': 'red', 'label': 'Selected Points'}
+  ])
+  .enter()
+  .append("g")
+  .attr("transform", function(d, i) {
+    return "translate(0," + i * 20 + ")";
+  });
+legend
+  .append("rect")
+  .attr("width", 18)
+  .attr("height", 18)
+  .style("fill", function(d) { 
+    return d.color
+  });
+  legend
+  .append("text")
+  .attr("x", 24)
+  .attr("y", 9)
+  .attr("dy", ".35em")
+  .text(function(d) { return d.label });

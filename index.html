@@ -50,12 +50,14 @@
     
     <h1>Visualization</h1>
     
-    <p><em>Include the interactive visualization as part of this page. Static example follows.</em></p>
+    <p><em>Below is a map visualization that produces a table with data</em></p>
     
   </div>
 
     <div class="vis-container">
-      <div id="map-container" style="margin: auto;"></div>
+      <div id="map-container"></div>
+      <div id="chart-container"></div>
+      <div id="table"></div>
     </div>
     
   
@@ -83,7 +85,7 @@
 
     <h1>Demo Video</h1>
     
-    <p><em>Embedded MP4 demo video using the HTML5 &lt;video&gt; tag. For example, this screen recording Prof. Cody Dunne made of Mike Bostock's flexible transitions in D3 slide:</em></p>
+    <p><em>Coming soon: a video that will demonstrate how to use the visualization and the features that come with it</em></p>
     
     <video controls width="100%">
       <source src="http://www.ccs.neu.edu/home/cody/courses/shared/d3-flexible-transitions.mp4" type="video/mp4">
@@ -93,42 +95,38 @@
 
     <h1>Visualization explanation</h1>
     
-    <p><em>Final visualization screenshots (PNG images), design justifications, UI walk-through, and linked presentation slides.</em></p>
+    <p><em>We decided to go with a map because of the data we wanted to display. We were trying to come up with a fun, interactive visualization that would attract all kinds of users (attendees, vendors, and potential sponsors); whilst making it informative as well. The final concept we came up with was a map that would display the zip codes of attendees and vendors.</em><p> 
+
+    <p><em>The idea is to highlight (or brush) a specific data point (or sets of data points). This will produce a table next to the map displaying more information regarding that data point. For attendees that displays favorite activity, likelihood to purchase goods at store, if it raised user awareness, their experience, how they found out about the event, and their age range. For vendors that displays vendor name, city, and state. Users also will have the ability to zoom in and out of the map; providing more concise results. SCREENSHOTS WILL COME POST SPRINT 2; WHEN THE VIZ IS MORE COMPLETE.</em></p>
 
     <h1>Data Analysis</h1>
-    <p><em>Summary of data, data types, and data preprocessing.</em></p>
+    <iframe src="https://docs.google.com/document/d/e/2PACX-1vR7vfS3CxV4fNl3rSj_plujK5KTTMprlxlSnqn49bPiVfBES0-38MoyYItM4tDVS0L9twLXHy6sMQFX/pub?embedded=true" 
+    width = 800px height = 350px></iframe>
 
-    <p><em>Expectation: Data sources match the problem statement and are appropriate. These descriptions should be very explicit so someone could read your page and properly reproduce your results.</em></p>
+    <h1>Task Analysis and Design Process</h1>
 
-    <h1>Task Analysis</h1>
-
-    <p><em>Summary of task table.</em></p>
-
-    <p><em>Expectation: Clearly describes domain tasks, processes, goals and abstract tasks for domain problems.</em></p>
-
-    <h1>Design Process</h1>
-    
-    <p><em>Sketches and design choices to justify final visualization.</em></p>
-
-    <p><em>Expectation: Evidence of iterative improvement.
-    Logical discussion of design choices grounded in theory from course.
-    Discusses feedback from usability testing.</em></p>
-
+   <p><em>Embedded below are two documents detailing our Task Analysis and Design Process. The first document contains our task analysis table, as we well as our initial design sketches and ideas for visualizations. The second document contains our final visualization sketch and a description of what its original purpose.</em><p>
+    <iframe src="https://docs.google.com/document/d/e/2PACX-1vTBtZhFixMJFZkArk74sxdt7VcfPREAiYhJk6QzDBL0Hi18MXJvD1qthUCZ0lgGKJ9t7g1Y8-RI_X1B/pub?embedded=true"
+    width = 800px height = 350px></iframe>
+    <iframe src="https://docs.google.com/document/d/e/2PACX-1vR8Uo2XRqR_PoWjK_yuuL2nPSo0CWOmN9mjtbLqQXazEFg0pQsAp4kBO1Um6_zskorhBzr9DRwVMgnR/pub?embedded=true"
+    width = 800px height = 350px></iframe>
 
     <h1>Conclusion</h1>
 
-    <p><em>Short summary of work completed and areas for improvement/future-work.</em></p>
+    <p><em>We were able to implement a basic map that plotted visual information regarding the location of attendees and vendors. We were also able to get a working table that displayed the information pertaining to each data point. In trying to display our data, we were limited by just the 2019 data because we didn't have the list of vendors from prior years. The list of vendors from 2019 was extrapolated from the SBN website. We then had to look up the zip code for every vendor manually. Also, because many of the variables had null data on it, we were forced to drop some of that data; limiting it even more.</em></p>
     
-    <p><em>Expectation: Meaningfully wraps up project and has good future directions.</em></p>
+    <p><em>In the future if we still had the time and ability to keep working on this, we would like to incoprorate more information. First we'd like to implement a filtering option that would help you filter for just attendee data points, or vendor data points. Likewise, the ability to filter through specific vendor names so that only their location would highlight. We would also like to add more data points to the map. Right now we are only using the data from 2019. If we had more information on the vendors, then we'd be able to publish data from 2017, 2018, and etc. Another improvement would be to cut the initial view of the map and only display the Northeast region. However, if the user chose to, they can still zoom in to inspect it more closely, or zoom out to see more of USA. We would also like to label, and color each state for the aesthetic visual appeal.</em></p>
+
 
     
     <h1>Acknowledgments</h1>
 
-    <p><em>List here where any code, packages/libraries, text, images, designs, etc. that you leverage come from.</em></p>
+    <p><em>We would like to extend a special thanks to the teaching staff of DS 4200. The professor and TA's religiously helped us to accomplish our tasks. We definitely wouldn't have gotten as far as we did in our project without them. We would also like to acknowledge their tutorial code. It helped us a lot in setting up a basic framework for our code (listed below).</em></p>
     
     <ul>
       <li><a href="https://d3js.org/">D3: Data-Driven Documents</a> by Mike Bostock.</li>
       <li><a href="https://codepo8.github.io/css-fork-on-github-ribbon/#">Pure CSS responsive "Fork me on GitHub" ribbon</a> by Chris Heilmann.</li>
+      <li><a href="https://github.com/NEU-DS-4200-S20-Staff/in-class-programming-d3-tutorial">D3 Tutorial Code</a> by Aditeya Pandey and Dylan Cashman.</li>
     </ul>
     
   </div>

@@ -1,76 +1,76 @@
-Index,Vendor,"Zip Code",Latitude,Longitude,"Accuracy Score","Accuracy Type",Number,Street,"Unit Type","Unit Number",City,State,County,Zip,Country,Source
-1,"Ackermann Maple Farm",05647,44.40145,-72.31232,1,place,,,,,Cabot,VT,"Washington County",05647,US,"TIGER/Line® dataset from the US Census Bureau"
-2,"African Alliance of RI (AARI)",02907,41.797065,-71.425501,1,place,,,,,Providence,RI,"Providence County",02907,US,"TIGER/Line® dataset from the US Census Bureau"
-3,"Afterburn Hot Sauce",03304,43.128256,-71.544599,1,place,,,,,Bow,NH,"Merrimack County",03304,US,"TIGER/Line® dataset from the US Census Bureau"
-4,"Akinto-Travel Water/Ancop",02116,42.350579,-71.076397,1,place,,,,,Boston,MA,"Suffolk County",02116,US,"TIGER/Line® dataset from the US Census Bureau"
-5,"Allandale Farm",02467,42.314608,-71.15306,1,place,,,,,"Chestnut Hill",MA,"Middlesex County",02467,US,"TIGER/Line® dataset from the US Census Bureau"
-6,"American Vinegar Works LLC",01852,42.631849,-71.295785,1,place,,,,,Lowell,MA,"Middlesex County",01852,US,"TIGER/Line® dataset from the US Census Bureau"
-7,"Barry’s Hot Sauce",02139,42.365146,-71.101842,1,place,,,,,Cambridge,MA,"Middlesex County",02139,US,"TIGER/Line® dataset from the US Census Bureau"
-8,"Beckah’s Bangin’ Butter",01915,42.565145,-70.853843,1,place,,,,,Beverly,MA,"Essex County",01915,US,"TIGER/Line® dataset from the US Census Bureau"
-9,"BeReal Doughs/ Love and Light Nourishing Foods LLC",02675,41.71007,-70.22586,1,place,,,,,"Yarmouth Port",MA,"Barnstable County",02675,US,"TIGER/Line® dataset from the US Census Bureau"
-10,"Beth Bakes",02842,41.519757,-71.273101,1,place,,,,,Middletown,RI,"Newport County",02842,US,"TIGER/Line® dataset from the US Census Bureau"
-11,"BOLA Granola",01230,42.19358,-73.36216,1,place,,,,,"Great Barrington",MA,"Berkshire County",01230,US,"TIGER/Line® dataset from the US Census Bureau"
-12,"Boston Food Forest Coalition, Inc.",02126,42.27232,-71.087,1,place,,,,,Mattapan,MA,"Suffolk County",02126,US,"TIGER/Line® dataset from the US Census Bureau"
-13,"Boston Area Gleaners",02452,42.394319,-71.218049,1,place,,,,,Waltham,MA,"Middlesex County",02452,US,"TIGER/Line® dataset from the US Census Bureau"
-14,"Boston Book Festival",02139,42.365146,-71.101842,1,place,,,,,Cambridge,MA,"Middlesex County",02139,US,"TIGER/Line® dataset from the US Census Bureau"
-15,"Boston Organics",02129,42.382588,-71.065287,1,place,,,,,Charlestown,MA,"Suffolk County",02129,US,"TIGER/Line® dataset from the US Census Bureau"
-16,"Boston Solar",01801,42.488595,-71.157271,1,place,,,,,Woburn,MA,"Middlesex County",01801,US,"TIGER/Line® dataset from the US Census Bureau"
-17,"Boston Veg Food Fest",02120,42.332484,-71.096416,1,place,,,,,Boston,MA,"Suffolk County",02120,US,"TIGER/Line® dataset from the US Census Bureau"
-18,"Brewer’s Crackers",02143,42.38092,-71.098896,1,place,,,,,Somerville,MA,"Middlesex County",02143,US,"TIGER/Line® dataset from the US Census Bureau"
-19,"Cape Cod Sweets",02576,41.78996,-70.75502,1,place,,,,,"West Wareham",MA,"Plymouth County",02576,US,"TIGER/Line® dataset from the US Census Bureau"
-20,"The Local Scoop",02653,41.7899,-70.00107,1,place,,,,,Orleans,MA,"Barnstable County",02653,US,"TIGER/Line® dataset from the US Census Bureau"
-21,"Commonwealth Kitchen",02121,42.307098,-71.081645,1,place,,,,,Boston,MA,"Suffolk County",02121,US,"TIGER/Line® dataset from the US Census Bureau"
-22,"Crooked Stick Pop",01027,42.26676,-72.66898,1,place,,,,,Easthampton,MA,"Hampshire County",01027,US,"TIGER/Line® dataset from the US Census Bureau"
-23,"Double Chin",02111,42.351047,-71.059365,1,place,,,,,Boston,MA,"Suffolk County",02111,US,"TIGER/Line® dataset from the US Census Bureau"
-24,"Effie’s Homemade",02136,42.254248,-71.129321,1,place,,,,,"Hyde Park",MA,"Suffolk County",02136,US,"TIGER/Line® dataset from the US Census Bureau"
-25,"Eloti Food Truck",02149,42.407396,-71.051183,1,place,,,,,Everett,MA,"Middlesex County",02149,US,"TIGER/Line® dataset from the US Census Bureau"
-26,"Goodnow Farms Chocolate",01776,42.38343,-71.41617,1,place,,,,,Sudbury,MA,"Middlesex County",01776,US,"TIGER/Line® dataset from the US Census Bureau"
-27,"Grateful Burger",01915,42.565145,-70.853843,1,place,,,,,Beverly,MA,"Essex County",01915,US,"TIGER/Line® dataset from the US Census Bureau"
-28,"Heiwa Tofu",04856,44.18452,-69.07615,1,place,,,,,Rockport,ME,"Knox County",04856,US,"TIGER/Line® dataset from the US Census Bureau"
-29,"Hometown Poké",02906,41.8374,-71.394717,1,place,,,,,Providence,RI,"Providence County",02906,US,"TIGER/Line® dataset from the US Census Bureau"
-30,Indelish,02481,42.310597,-71.274652,1,place,,,,,"Wellesley Hills",MA,"Norfolk County",02481,US,"TIGER/Line® dataset from the US Census Bureau"
-31,"Kitchen Garden Farm",01375,42.46675,-72.5787,1,place,,,,,Sunderland,MA,"Franklin County",01375,US,"TIGER/Line® dataset from the US Census Bureau"
-32,"Kitchen Magic",01752,42.34909,-71.54546,1,place,,,,,Marlborough,MA,"Middlesex County",01752,US,"TIGER/Line® dataset from the US Census Bureau"
-33,Koy,02109,42.360027,-71.054495,1,place,,,,,Boston,MA,"Suffolk County",02109,US,"TIGER/Line® dataset from the US Census Bureau"
-34,"Little Acre Gourmet",03820,43.190666,-70.887661,1,place,,,,,Dover,NH,"Strafford County",03820,US,"TIGER/Line® dataset from the US Census Bureau"
-35,"Lost Art Cultured Food",02823,41.7312,-71.546756,1,place,,,,,Fiskeville,RI,"Providence County",02823,US,"TIGER/Line® dataset from the US Census Bureau"
-36,Makomas,02151,42.40843,-71.01199,1,place,,,,,Revere,MA,"Suffolk County",02151,US,"TIGER/Line® dataset from the US Census Bureau"
-37,"Maple Valley Creamery",01035,42.356804,-72.576613,1,place,,,,,Hadley,MA,"Hampshire County",01035,US,"TIGER/Line® dataset from the US Census Bureau"
-38,"Mass Department of Agricultural Resources",02114,42.363175,-71.068646,1,place,,,,,Boston,MA,"Suffolk County",02114,US,"TIGER/Line® dataset from the US Census Bureau"
-39,"Meal Mantra",02461,42.317362,-71.206508,1,place,,,,,"Newton Highlands",MA,"Middlesex County",02461,US,"TIGER/Line® dataset from the US Census Bureau"
-40,"Mela Indian Restaurant",02118,42.336162,-71.072854,1,place,,,,,Boston,MA,"Suffolk County",02118,US,"TIGER/Line® dataset from the US Census Bureau"
-41,"MOJO Cold Brewed Coffee",01984,42.597691,-70.8732,1,place,,,,,Wenham,MA,"Essex County",01984,US,"TIGER/Line® dataset from the US Census Bureau"
-42,"Mr. Tamole",02131,42.284197,-71.120896,1,place,,,,,Roslindale,MA,"Suffolk County",02131,US,"TIGER/Line® dataset from the US Census Bureau"
-43,"Dairy Promotion Board",02114,42.363175,-71.068646,1,place,,,,,Boston,MA,"Suffolk County",02114,US,"TIGER/Line® dataset from the US Census Bureau"
-44,"Nashoba Brook Bakery",01742,42.46037,-71.34895,1,place,,,,,Concord,MA,"Middlesex County",01742,US,"TIGER/Line® dataset from the US Census Bureau"
-45,"Nicolena’s Cheesecake Truck",02601,41.65289,-70.2828,1,place,,,,,Hyannis,MA,"Barnstable County",02601,US,"TIGER/Line® dataset from the US Census Bureau"
-46,"Nirvana the Taste of India",02138,42.380442,-71.132947,1,place,,,,,Cambridge,MA,"Middlesex County",02138,US,"TIGER/Line® dataset from the US Census Bureau"
-47,"NOBL Coffee",02115,42.336342,-71.104176,1,place,,,,,Boston,MA,"Suffolk County",02115,US,"TIGER/Line® dataset from the US Census Bureau"
-48,"North Square Oyster",02113,42.365398,-71.055001,1,place,,,,,Boston,MA,"Suffolk County",02113,US,"TIGER/Line® dataset from the US Census Bureau"
-49,"Old Friends Farm",01002,42.367092,-72.464571,1,place,,,,,Amherst,MA,"Hampshire County",01002,US,"TIGER/Line® dataset from the US Census Bureau"
-50,onebitesweet,01702,42.282576,-71.43676,1,place,,,,,Framingham,MA,"Middlesex County",01702,US,"TIGER/Line® dataset from the US Census Bureau"
-51,"Our Family Farms",01301,42.601335,-72.623619,1,place,,,,,Greenfield,MA,"Franklin County",01301,US,"TIGER/Line® dataset from the US Census Bureau"
-52,"Prophecy Chocolate",02457,42.299388,-71.274242,1,place,,,,,"Babson Park",MA,"Norfolk County",02457,US,"TIGER/Line® dataset from the US Census Bureau"
-53,"Qs Nuts",02144,42.399655,-71.12255,1,place,,,,,Somerville,MA,"Middlesex County",02144,US,"TIGER/Line® dataset from the US Census Bureau"
-54,"R&S Jamaican Restaurant",02131,42.284197,-71.120896,1,place,,,,,Roslindale,MA,"Suffolk County",02131,US,"TIGER/Line® dataset from the US Census Bureau"
-55,"Real Pickles",01301,42.601335,-72.623619,1,place,,,,,Greenfield,MA,"Franklin County",01301,US,"TIGER/Line® dataset from the US Census Bureau"
-56,"Red Apple Farm",01331,42.59353,-72.23033,1,place,,,,,Athol,MA,"Worcester County",01331,US,"TIGER/Line® dataset from the US Census Bureau"
-57,"Seaview Farm",01966,42.657866,-70.618057,1,place,,,,,Rockport,MA,"Essex County",01966,US,"TIGER/Line® dataset from the US Census Bureau"
-58,"Sisters of Anarchy Ice Cream",05482,44.38061,-73.22763,1,place,,,,,Shelburne,VT,"Chittenden County",05482,US,"TIGER/Line® dataset from the US Census Bureau"
-59,"Somerville Chocolate",02143,42.38092,-71.098896,1,place,,,,,Somerville,MA,"Middlesex County",02143,US,"TIGER/Line® dataset from the US Census Bureau"
-60,"Sugar Bob’s Finest Kind",05701,43.630346,-72.93586,1,place,,,,,Rutland,VT,"Rutland County",05701,US,"TIGER/Line® dataset from the US Census Bureau"
-61,"Sustainable Food Solutions Inc, Bug Bite Farm",01915,42.565145,-70.853843,1,place,,,,,Beverly,MA,"Essex County",01915,US,"TIGER/Line® dataset from the US Census Bureau"
-62,"Taco Party",02144,42.399655,-71.12255,1,place,,,,,Somerville,MA,"Middlesex County",02144,US,"TIGER/Line® dataset from the US Census Bureau"
-63,"Tamim Teas",02885,41.727451,-71.257492,1,place,,,,,Warren,RI,"Bristol County",02885,US,"TIGER/Line® dataset from the US Census Bureau"
-64,"Tasting Counter",02143,42.38092,-71.098896,1,place,,,,,Somerville,MA,"Middlesex County",02143,US,"TIGER/Line® dataset from the US Census Bureau"
-65,"Taza Chocolate",02143,42.38092,-71.098896,1,place,,,,,Somerville,MA,"Middlesex County",02143,US,"TIGER/Line® dataset from the US Census Bureau"
-66,"The Baklava Project, LLC",02081,42.148624,-71.255533,1,place,,,,,Walpole,MA,"Norfolk County",02081,US,"TIGER/Line® dataset from the US Census Bureau"
-67,"The Farmer’s Daughter",02356,42.053408,-71.12033,1,place,,,,,"North Easton",MA,"Bristol County",02356,US,"TIGER/Line® dataset from the US Census Bureau"
-68,"The Green Crab R&D Project",02633,41.67633,-69.96321,1,place,,,,,Chatham,MA,"Barnstable County",02633,US,"TIGER/Line® dataset from the US Census Bureau"
-69,"Rose F Kennedy Greenway",02110,42.361962,-71.047847,1,place,,,,,Boston,MA,"Suffolk County",02110,US,"TIGER/Line® dataset from the US Census Bureau"
-70,"The Spota",01801,42.488595,-71.157271,1,place,,,,,Woburn,MA,"Middlesex County",01801,US,"TIGER/Line® dataset from the US Census Bureau"
-71,"Whoopie Wagon",01983,42.661793,-70.954487,1,place,,,,,Topsfield,MA,"Essex County",01983,US,"TIGER/Line® dataset from the US Census Bureau"
-72,"Thistle’s All Natural",03263,43.297834,-71.343707,1,place,,,,,Pittsfield,NH,"Merrimack County",03263,US,"TIGER/Line® dataset from the US Census Bureau"
-73,"UPrise Foods",10956,41.149494,-73.98827,1,place,,,,,"New City",NY,"Rockland County",10956,US,"TIGER/Line® dataset from the US Census Bureau"
-74,"Venus Wafers",02043,42.212105,-70.884989,1,place,,,,,Hingham,MA,"Plymouth County",02043,US,"TIGER/Line® dataset from the US Census Bureau"
-75,Waku,20170,38.983887,-77.367457,1,place,,,,,Herndon,VA,"Fairfax County",20170,US,"TIGER/Line® dataset from the US Census Bureau"
+Index,Vendor,Zip Code,Latitude,Longitude,City,State
+1,Ackermann Maple Farm,5647,44.40145,-72.31232,Cabot,VT
+2,African Alliance of RI (AARI),2907,41.797065,-71.425501,Providence,RI
+3,Afterburn Hot Sauce,3304,43.128256,-71.544599,Bow,NH
+4,Akinto-Travel Water/Ancop,2116,42.350579,-71.076397,Boston,MA
+5,Allandale Farm,2467,42.314608,-71.15306,Chestnut Hill,MA
+6,American Vinegar Works LLC,1852,42.631849,-71.295785,Lowell,MA
+7,Barry’s Hot Sauce,2139,42.365146,-71.101842,Cambridge,MA
+8,Beckah’s Bangin’ Butter,1915,42.565145,-70.853843,Beverly,MA
+9,BeReal Doughs/ Love and Light Nourishing Foods LLC,2675,41.71007,-70.22586,Yarmouth Port,MA
+10,Beth Bakes,2842,41.519757,-71.273101,Middletown,RI
+11,BOLA Granola,1230,42.19358,-73.36216,Great Barrington,MA
+12,"Boston Food Forest Coalition, Inc.",2126,42.27232,-71.087,Mattapan,MA
+13,Boston Area Gleaners,2452,42.394319,-71.218049,Waltham,MA
+14,Boston Book Festival,2139,42.365146,-71.101842,Cambridge,MA
+15,Boston Organics,2129,42.382588,-71.065287,Charlestown,MA
+16,Boston Solar,1801,42.488595,-71.157271,Woburn,MA
+17,Boston Veg Food Fest,2120,42.332484,-71.096416,Boston,MA
+18,Brewer’s Crackers,2143,42.38092,-71.098896,Somerville,MA
+19,Cape Cod Sweets,2576,41.78996,-70.75502,West Wareham,MA
+20,The Local Scoop,2653,41.7899,-70.00107,Orleans,MA
+21,Commonwealth Kitchen,2121,42.307098,-71.081645,Boston,MA
+22,Crooked Stick Pop,1027,42.26676,-72.66898,Easthampton,MA
+23,Double Chin,2111,42.351047,-71.059365,Boston,MA
+24,Effie’s Homemade,2136,42.254248,-71.129321,Hyde Park,MA
+25,Eloti Food Truck,2149,42.407396,-71.051183,Everett,MA
+26,Goodnow Farms Chocolate,1776,42.38343,-71.41617,Sudbury,MA
+27,Grateful Burger,1915,42.565145,-70.853843,Beverly,MA
+28,Heiwa Tofu,4856,44.18452,-69.07615,Rockport,ME
+29,Hometown Poké,2906,41.8374,-71.394717,Providence,RI
+30,Indelish,2481,42.310597,-71.274652,Wellesley Hills,MA
+31,Kitchen Garden Farm,1375,42.46675,-72.5787,Sunderland,MA
+32,Kitchen Magic,1752,42.34909,-71.54546,Marlborough,MA
+33,Koy,2109,42.360027,-71.054495,Boston,MA
+34,Little Acre Gourmet,3820,43.190666,-70.887661,Dover,NH
+35,Lost Art Cultured Food,2823,41.7312,-71.546756,Fiskeville,RI
+36,Makomas,2151,42.40843,-71.01199,Revere,MA
+37,Maple Valley Creamery,1035,42.356804,-72.576613,Hadley,MA
+38,Mass Department of Agricultural Resources,2114,42.363175,-71.068646,Boston,MA
+39,Meal Mantra,2461,42.317362,-71.206508,Newton Highlands,MA
+40,Mela Indian Restaurant,2118,42.336162,-71.072854,Boston,MA
+41,MOJO Cold Brewed Coffee,1984,42.597691,-70.8732,Wenham,MA
+42,Mr. Tamole,2131,42.284197,-71.120896,Roslindale,MA
+43,Dairy Promotion Board,2114,42.363175,-71.068646,Boston,MA
+44,Nashoba Brook Bakery,1742,42.46037,-71.34895,Concord,MA
+45,Nicolena’s Cheesecake Truck,2601,41.65289,-70.2828,Hyannis,MA
+46,Nirvana the Taste of India,2138,42.380442,-71.132947,Cambridge,MA
+47,NOBL Coffee,2115,42.336342,-71.104176,Boston,MA
+48,North Square Oyster,2113,42.365398,-71.055001,Boston,MA
+49,Old Friends Farm,1002,42.367092,-72.464571,Amherst,MA
+50,onebitesweet,1702,42.282576,-71.43676,Framingham,MA
+51,Our Family Farms,1301,42.601335,-72.623619,Greenfield,MA
+52,Prophecy Chocolate,2457,42.299388,-71.274242,Babson Park,MA
+53,Qs Nuts,2144,42.399655,-71.12255,Somerville,MA
+54,R&S Jamaican Restaurant,2131,42.284197,-71.120896,Roslindale,MA
+55,Real Pickles,1301,42.601335,-72.623619,Greenfield,MA
+56,Red Apple Farm,1331,42.59353,-72.23033,Athol,MA
+57,Seaview Farm,1966,42.657866,-70.618057,Rockport,MA
+58,Sisters of Anarchy Ice Cream,5482,44.38061,-73.22763,Shelburne,VT
+59,Somerville Chocolate,2143,42.38092,-71.098896,Somerville,MA
+60,Sugar Bob’s Finest Kind,5701,43.630346,-72.93586,Rutland,VT
+61,"Sustainable Food Solutions Inc, Bug Bite Farm",1915,42.565145,-70.853843,Beverly,MA
+62,Taco Party,2144,42.399655,-71.12255,Somerville,MA
+63,Tamim Teas,2885,41.727451,-71.257492,Warren,RI
+64,Tasting Counter,2143,42.38092,-71.098896,Somerville,MA
+65,Taza Chocolate,2143,42.38092,-71.098896,Somerville,MA
+66,"The Baklava Project, LLC",2081,42.148624,-71.255533,Walpole,MA
+67,The Farmer’s Daughter,2356,42.053408,-71.12033,North Easton,MA
+68,The Green Crab R&D Project,2633,41.67633,-69.96321,Chatham,MA
+69,Rose F Kennedy Greenway,2110,42.361962,-71.047847,Boston,MA
+70,The Spota,1801,42.488595,-71.157271,Woburn,MA
+71,Whoopie Wagon,1983,42.661793,-70.954487,Topsfield,MA
+72,Thistle’s All Natural,3263,43.297834,-71.343707,Pittsfield,NH
+73,UPrise Foods,10956,41.149494,-73.98827,New City,NY
+74,Venus Wafers,2043,42.212105,-70.884989,Hingham,MA
+75,Waku,20170,38.983887,-77.367457,Herndon,VA
