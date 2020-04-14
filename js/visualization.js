@@ -121,7 +121,6 @@ function highlight() {
   circles = d3.selectAll("circle");
   //circles_temp = d3.selectAll("circle");
   //console.log(circles_temp);
-  console.log(circles);
 
   circles.classed(
     "selected",
