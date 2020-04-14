@@ -17,7 +17,7 @@ var svg = d3
   .attr("width", width)
   .attr("height", height)
   .call(d3.zoom().on("zoom", function() {
-    svg.attr("transform", d3.event.transform); 
+    svg.attr("transform", d3.event.transform);
     //console.log(d3.event.transform);
     d3.selectAll("circle").transition().duration(500).attr("r", r/d3.event.transform.k);
   }))
@@ -40,9 +40,9 @@ d3.json("us.json", function(us) {
   console.log(us);
   //Error
   d3.csv("data/Attendee Information Ver 2.csv", function(attendee) {
-    d3.csv("data/Vendor Information Ver 2.csv", function(vendor) { 
+    d3.csv("data/Vendor Information Ver 2.csv", function(vendor) {
 
-    var zipCodeList = [];  
+    var zipCodeList = [];
     attendee.forEach(function(row) {
           var zipCodePair = [];
           zipCodePair.push(parseFloat(Object.values(row)[1]));
@@ -89,7 +89,7 @@ function drawMap(us, attendee, vendor, zipCodeList, vendorCodeList) {
       })
     )
     .attr("id", "state-borders")
-    .attr("d", path); 
+    .attr("d", path);
 
     let mapData = [];
     for(let d of attendee ) {
@@ -101,7 +101,7 @@ function drawMap(us, attendee, vendor, zipCodeList, vendorCodeList) {
       mapData.push(temp);
     }
 
-   
+
     var circles = svg
     .selectAll("circle")
     .data(mapData).enter()
@@ -181,14 +181,14 @@ function brushend() {
   console.log("Zips" + filtDataZips);
   selected.forEach(function(row) {
     var filtDataRow = [];
-    if (!(filtDataZips.includes(row.Zip))) {
+    if (!(filtDataZips.includes(row.value.Zip))) {
       filtDataRow.push(row);
-      filtDataZips.push(row.Zip);
+      filtDataZips.push(row.value.Zip);
       filtDataRow[0].Count = 1;
       filtData.push(filtDataRow);
     } else {
       filtData.forEach(function(row2) {
-          if (row.Zip == row2.Zip) {
+          if (row.value.Zip == row2[0].value.Zip) {
             filtDataRow = row2;
           }
         });
@@ -199,7 +199,6 @@ function brushend() {
   console.log("Tot");
   console.log(filtData);
 
-  d3.select("#table").select("#tbody").selectAll("#tr").remove();
 
   chart("#table", filtData);
 
