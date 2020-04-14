@@ -1,3 +1,4 @@
+//this file sets up zooming functionality for the map
 
 var sliderVertical = d3
 .sliderLeft()

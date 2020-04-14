@@ -2,6 +2,7 @@ var width =  960;
 var height = 500;
 var r = 5;
 
+//make table for displaying data highlighted on map
 var table = d3.select("#table").append("table").classed("Attendee Information", true);
 table.append("thead");
 table.append("tbody");
@@ -9,6 +10,7 @@ var selected = [];
 var filtData = [];
 var filtDataZips = [];
 
+//incorporate zoom function
 var zoom = d3.zoom()
 
 var svg = d3
@@ -35,7 +37,7 @@ var projection = d3
 
 var path = d3.geoPath().projection(projection);
 
-
+//read dataset to display datapoints on map
 d3.json("us.json", function(us) {
   console.log(us);
   //Error
@@ -63,12 +65,13 @@ d3.json("us.json", function(us) {
   });
 });
 });
-
+//make brush function
 var brush = d3
   .brush()
   .on("start brush", highlight)
   .on("end", brushend);
 
+//draws the map and all the data points
 function drawMap(us, attendee, vendor, zipCodeList, vendorCodeList) {
   var mapGroup = svg.append("g").attr("class", "mapGroup");
 
@@ -101,7 +104,7 @@ function drawMap(us, attendee, vendor, zipCodeList, vendorCodeList) {
       mapData.push(temp);
     }
 
-   
+   //displays datapoints as circles
     var circles = svg
     .selectAll("circle")
     .data(mapData).enter()
@@ -120,6 +123,7 @@ function drawMap(us, attendee, vendor, zipCodeList, vendorCodeList) {
   svg.append("g").call(brush);
 }
 
+//function that allows brushing to highlight datapoints 
 function highlight() {
   if (d3.event.selection === null) return;
 
@@ -148,7 +152,7 @@ function highlight() {
   );
 }
 
-
+//sets up table formatting
 function chart(selector, data) {
     selected = [];
     console.log("Charted");
@@ -173,7 +177,7 @@ function chart(selector, data) {
       });
 }
 
-
+//ends brushing
 function brushend() {
   filtData = [];
   filtDataZips = [];
@@ -205,3 +209,33 @@ function brushend() {
 
   console.log("end");
 }
+
+var legend = svg
+  .append("g")
+  .attr("class", "legend")
+  .attr("width", 140)
+  .attr("height", 200)
+  .selectAll("g")
+  .data([
+    {'color': 'orange', 'label': 'Attendees'}, 
+    {'color': 'blue', 'label': 'Vendors'},
+    {'color': 'red', 'label': 'Selected Points'}
+  ])
+  .enter()
+  .append("g")
+  .attr("transform", function(d, i) {
+    return "translate(0," + i * 20 + ")";
+  });
+legend
+  .append("rect")
+  .attr("width", 18)
+  .attr("height", 18)
+  .style("fill", function(d) { 
+    return d.color
+  });
+  legend
+  .append("text")
+  .attr("x", 24)
+  .attr("y", 9)
+  .attr("dy", ".35em")
+  .text(function(d) { return d.label });
