@@ -13,7 +13,7 @@
 1. Make Table disappear when unbrushing the data point - **DONE**
 1. Make Table reappear with new information when brushing different points - **DONE**
 1. Make Table remove old information from prior, now unbrushed, datapoints - **MISSING**
-1. Make a legend appear to explain what each unique data point means **MISSING**
+1. Make a legend appear to explain what each unique data point means **DONE**
 1. When zooming, double clicking should reset the map and zooming again should reset aswell - **MISSING**
 
 
