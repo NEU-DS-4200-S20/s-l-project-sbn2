@@ -211,6 +211,74 @@ function brushend() {
     });
   });
 
+function convertvalues(drow, dlabel) {
+  var temp = 0;
+  for(a in drow) {
+      temp+=a;
+    }
+  temp = Math.round(temp/drow.length);
+
+  if (dlabel == 'Favorite_Activity') {
+    if(temp == 1)
+      return "Interaction with local Vendors";
+    else if(temp == 2) 
+      return "New England Village";
+    else if(temp ==3) 
+      return "Family Fun Zone";
+    else if(temp ==4)
+      return "Chef Demos";
+    else if(temp ==5)
+      return "Seafood Throwdown";
+    else
+      return "Other";
+  }
+  else if (dlabel == "Reference") {
+    if(temp == 1)
+      return "Eventbrite";
+    else if(temp == 2) 
+      return "Instagram";
+    else if(temp ==3) 
+      return "Facebook";
+    else if(temp ==4)
+      return "Walked By";
+    else if(temp ==5)
+      return "Beer Fest";
+    else if (temp ==6)
+      return "Friend";
+    else if (temp ==7)
+      return "Other";
+    else if (temp ==8)
+      return "Google";
+    else if (temp ==9)
+      return "Meetup.com"
+    else if (temp ==10)
+      return "Local News"
+  }
+  else if (dlabel == "Age_Range") {
+    if(temp == 1)
+      return "Under 18";
+    else if(temp == 2) 
+      return "19-25";
+    else if(temp ==3) 
+      return "26-35";
+    else if(temp ==4)
+      return "36-50";
+    else if(temp ==5)
+      return "51-64";
+    else
+      return "65+";
+  }
+  else 
+    return temp;
+}
+
+/*'Under 18' : 1,
+        '19-25' : 2,
+        '26-35' : 3,
+        '36-50' : 4,
+        '51-64' : 5,
+        '65+' : 6*/
+
   chart("#table", filtData);
 
   console.log("end");
