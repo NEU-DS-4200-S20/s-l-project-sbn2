@@ -10,11 +10,11 @@
 1. Implement zooming function that allows users to zoom in and out of the map - **DONE**
 1. Implement Brushing and Linking between Map and Table **DONE**
 1. Make Table display information pertaining to the highlighted data point - **MISSING**
-1. Make Table disappear when unbrushing the data point - **DONE**
-1. Make Table reappear with new information when brushing different points - **DONE**
+1. Make Table disappear when unbrushing the data point - **MISSING**
+1. Make Table reappear with new information when brushing different points - **MISSING**
 1. Make Table remove old information from prior, now unbrushed, datapoints - **MISSING**
 1. Make a legend appear to explain what each unique data point means **DONE**
-1. When zooming, double clicking should reset the map and zooming again should reset aswell - **MISSING**
+1. When zooming, double clicking should reset the map and zooming again should reset aswell - **DONE**
 
 
 
