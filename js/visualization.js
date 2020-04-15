@@ -8,6 +8,8 @@ table.append("tbody");
 var selected = [];
 var filtData = [];
 var filtDataZips = [];
+var tableHeaderValues = ["Participant Count", "Favorite Activity",
+"Likelihood To Purchase At Store","Raise Awareness","Rate Experience","Reference","Age Range", "Zip Code", "City", "State"]
 
 var zoom = d3.zoom()
 
@@ -21,7 +23,7 @@ var svg = d3
     //console.log(d3.event.transform);
     d3.selectAll("circle").transition().duration(500).attr("r", r/d3.event.transform.k);
   }))
-  .on("dblclick.zoom", function(){
+  .on("dblclick.zoom", function() {
     svg.attr("transform", d3.zoomIdentity); //attempt to reset zoom scale on dblclick - will be figured out by final delivery
     d3.selectAll("circle").transition().duration(500).attr("r", r); //this works to reset the circle radius
   })
@@ -150,23 +152,26 @@ function highlight() {
 
 
 function chart(selector, data) {
-    selected = [];
     console.log("Charted");
 
-    let tableHeaders = data.keys();
+
     table.select("thead")
         .selectAll("th")
-        .data(tableHeaders)
+        .data(tableHeaderValues)
         .enter().append("th")
-        .text(function(d) {
-            return d;
-          });
+        .text(function(d){
+          console.log(d);
+          return d;
+        });
+
     table.select("tbody")
        .selectAll("tr").data(data)
        .enter().append("tr")
        .selectAll("td")
        .data(function(d){
-         return [d[0].value.Zip,d[0].value.City,d[0].value.State,d[0].value.Country, d[0].Count];})
+         return [d[0].Count, d[0].value.Favorite_Activity, d[0].value.Likelihood_To_Purchase_At_Store,
+         d[0].value.Raise_Awareness, d[0].value.Rate_Experience, d[0].value.Reference, d[0].value.Age_Range,
+         d[0].value.Zip,d[0].value.City,d[0].value.State];})
          .enter().append("td")
         .text(function(d){
          return d;
@@ -177,7 +182,8 @@ function chart(selector, data) {
 function brushend() {
   filtData = [];
   filtDataZips = [];
-
+//  ["Participant Count", "Favorite_Activity",
+//  "Likelihood_To_Purchase_At_Store","Raise_Awareness","Rate_Experience","Reference","Age_Range", "Zip Code", "City", "State"]
   console.log("Zips" + filtDataZips);
   selected.forEach(function(row) {
     var filtDataRow = [];
@@ -186,19 +192,22 @@ function brushend() {
       filtDataZips.push(row.value.Zip);
       filtDataRow[0].Count = 1;
       filtData.push(filtDataRow);
-    } else {
-      filtData.forEach(function(row2) {
-          if (row.value.Zip == row2[0].value.Zip) {
-            filtDataRow = row2;
-          }
-        });
-        filtDataRow.Count += 1;
     }
   });
 
-  console.log("Tot");
-  console.log(filtData);
-
+  selected.forEach(function(row) {
+    filtData.forEach(function(row2) {
+      if (row.value.Zip == row2[0].value.Zip) {
+        row2[0].Count += 1;
+        if (row2[0].label == "attendee") {
+        row2[0].value.Favorite_Activity =
+        (parseInt(row2[0].value.Favorite_Activity) + parseInt(row.value.Favorite_Activity));
+        row2[0].value.Likelihood_To_Purchase_At_Store =
+        (parseInt(row.value.Likelihood_To_Purchase_At_Store) + parseInt(row2[0].value.Likelihood_To_Purchase_At_Store));
+      }
+      }
+    });
+  });
 
   chart("#table", filtData);
 
