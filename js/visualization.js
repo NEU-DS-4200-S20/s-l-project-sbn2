@@ -23,7 +23,7 @@ var svg = d3
   .attr("height", height)
   .append("g")
   .call(zoom.on("zoom", function() {
-    svg.attr("transform", d3.event.transform); 
+    svg.attr("transform", d3.event.transform);
     d3.selectAll("circle").transition().duration(500).attr("r", r/d3.event.transform.k);
   }))
   .on("dblclick.zoom", function(){
@@ -124,7 +124,7 @@ function drawMap(us, attendee, vendor, zipCodeList, vendorCodeList) {
   svg.append("g").call(brush);
 }
 
-//function that allows brushing to highlight datapoints 
+//function that allows brushing to highlight datapoints
 function highlight() {
   if (d3.event.selection === null) return;
 
@@ -136,7 +136,7 @@ function highlight() {
   circles = d3.selectAll("circle");
   //circles_temp = d3.selectAll("circle");
   //console.log(circles_temp);
-
+  selected = [];
   circles.classed(
     "selected", function(d) {
     //d =>
@@ -166,14 +166,20 @@ function chart(selector, data) {
           return d;
         });
 
+    table.select("tbody").selectAll("tr").remove();
+
     table.select("tbody")
        .selectAll("tr").data(data)
        .enter().append("tr")
        .selectAll("td")
        .data(function(d){
-         return [d[0].Count, d[0].value.Favorite_Activity, d[0].value.Likelihood_To_Purchase_At_Store,
-         d[0].value.Raise_Awareness, d[0].value.Rate_Experience, d[0].value.Reference, d[0].value.Age_Range,
-         d[0].value.Zip,d[0].value.City,d[0].value.State];})
+         d[0].value.Zip = "" + d[0].value.Zip;
+         if (d[0].value.Zip.length == 4) {
+           d[0].value.Zip = "0" + d[0].value.Zip;
+         }
+         return [d[0].Count, d[0].value.Favorite_Activity_Array, d[0].value.Likelihood_To_Purchase_At_Store_Array,
+         d[0].value.Raise_Awareness, d[0].value.Rate_Experience, d[0].value.Reference, d[0].value.Age_Range, d[0].value.Zip
+         ,d[0].value.City,d[0].value.State];})
          .enter().append("td")
         .text(function(d){
          return d;
@@ -192,7 +198,9 @@ function brushend() {
     if (!(filtDataZips.includes(row.value.Zip))) {
       filtDataRow.push(row);
       filtDataZips.push(row.value.Zip);
-      filtDataRow[0].Count = 1;
+      filtDataRow[0].Count = 0;
+      filtDataRow[0].value.Favorite_Activity_Array = []
+      filtDataRow[0].value.Likelihood_To_Purchase_At_Store_Array = []
       filtData.push(filtDataRow);
     }
   });
@@ -202,10 +210,8 @@ function brushend() {
       if (row.value.Zip == row2[0].value.Zip) {
         row2[0].Count += 1;
         if (row2[0].label == "attendee") {
-        row2[0].value.Favorite_Activity =
-        (parseInt(row2[0].value.Favorite_Activity) + parseInt(row.value.Favorite_Activity));
-        row2[0].value.Likelihood_To_Purchase_At_Store =
-        (parseInt(row.value.Likelihood_To_Purchase_At_Store) + parseInt(row2[0].value.Likelihood_To_Purchase_At_Store));
+        row2[0].value.Favorite_Activity_Array.push(row.value.Favorite_Activity);
+        row2[0].value.Likelihood_To_Purchase_At_Store_Array.push(row.value.Favorite_Activity);
       }
       }
     });
@@ -221,9 +227,9 @@ function convertvalues(drow, dlabel) {
   if (dlabel == 'Favorite_Activity') {
     if(temp == 1)
       return "Interaction with local Vendors";
-    else if(temp == 2) 
+    else if(temp == 2)
       return "New England Village";
-    else if(temp ==3) 
+    else if(temp ==3)
       return "Family Fun Zone";
     else if(temp ==4)
       return "Chef Demos";
@@ -235,15 +241,15 @@ function convertvalues(drow, dlabel) {
   else if (dlabel == "Reference") {
     if(temp == 1)
       return "Eventbrite";
-    else if(temp == 2) 
+    else if(temp == 2)
       return "Instagram";
-    else if(temp ==3) 
+    else if(temp ==3)
       return "Facebook";
     else if(temp ==4)
       return "Walked By";
     else if(temp ==5)
       return "Beer Fest";
-    else if (temp ==6)
+    else if (temp == 6)
       return "Friend";
     else if (temp ==7)
       return "Other";
@@ -257,9 +263,9 @@ function convertvalues(drow, dlabel) {
   else if (dlabel == "Age_Range") {
     if(temp == 1)
       return "Under 18";
-    else if(temp == 2) 
+    else if(temp == 2)
       return "19-25";
-    else if(temp ==3) 
+    else if(temp ==3)
       return "26-35";
     else if(temp ==4)
       return "36-50";
@@ -268,7 +274,7 @@ function convertvalues(drow, dlabel) {
     else
       return "65+";
   }
-  else 
+  else
     return temp;
 }
 
@@ -291,7 +297,7 @@ var legend = svg
   .attr("height", 200)
   .selectAll("g")
   .data([
-    {'color': 'orange', 'label': 'Attendees'}, 
+    {'color': 'orange', 'label': 'Attendees'},
     {'color': 'blue', 'label': 'Vendors'},
     {'color': 'red', 'label': 'Selected Points'}
   ])
@@ -304,7 +310,7 @@ legend
   .append("rect")
   .attr("width", 18)
   .attr("height", 18)
-  .style("fill", function(d) { 
+  .style("fill", function(d) {
     return d.color
   });
   legend
