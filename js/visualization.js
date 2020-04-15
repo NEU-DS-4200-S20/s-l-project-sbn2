@@ -10,6 +10,8 @@ table.append("tbody");
 var selected = [];
 var filtData = [];
 var filtDataZips = [];
+var tableHeaderValues = ["Participant Count", "Favorite Activity",
+"Likelihood To Purchase At Store","Raise Awareness","Rate Experience","Reference","Age Range", "Zip Code", "City", "State"]
 
 //incorporate zoom function
 var zoom = d3.zoom()
@@ -40,9 +42,9 @@ d3.json("us.json", function(us) {
   console.log(us);
   //Error
   d3.csv("data/Attendee Information Ver 2.csv", function(attendee) {
-    d3.csv("data/Vendor Information Ver 2.csv", function(vendor) { 
+    d3.csv("data/Vendor Information Ver 2.csv", function(vendor) {
 
-    var zipCodeList = [];  
+    var zipCodeList = [];
     attendee.forEach(function(row) {
           var zipCodePair = [];
           zipCodePair.push(parseFloat(Object.values(row)[1]));
@@ -90,7 +92,7 @@ function drawMap(us, attendee, vendor, zipCodeList, vendorCodeList) {
       })
     )
     .attr("id", "state-borders")
-    .attr("d", path); 
+    .attr("d", path);
 
     let mapData = [];
     for(let d of attendee ) {
@@ -103,6 +105,7 @@ function drawMap(us, attendee, vendor, zipCodeList, vendorCodeList) {
     }
 
    //displays datapoints as circles
+
     var circles = svg
     .selectAll("circle")
     .data(mapData).enter()
@@ -151,23 +154,26 @@ function highlight() {
 
 //sets up table formatting
 function chart(selector, data) {
-    selected = [];
     console.log("Charted");
 
-    let tableHeaders = data.keys();
+
     table.select("thead")
         .selectAll("th")
-        .data(tableHeaders)
+        .data(tableHeaderValues)
         .enter().append("th")
-        .text(function(d) {
-            return d;
-          });
+        .text(function(d){
+          console.log(d);
+          return d;
+        });
+
     table.select("tbody")
        .selectAll("tr").data(data)
        .enter().append("tr")
        .selectAll("td")
        .data(function(d){
-         return [d[0].value.Zip,d[0].value.City,d[0].value.State,d[0].value.Country, d[0].Count];})
+         return [d[0].Count, d[0].value.Favorite_Activity, d[0].value.Likelihood_To_Purchase_At_Store,
+         d[0].value.Raise_Awareness, d[0].value.Rate_Experience, d[0].value.Reference, d[0].value.Age_Range,
+         d[0].value.Zip,d[0].value.City,d[0].value.State];})
          .enter().append("td")
         .text(function(d){
          return d;
@@ -178,29 +184,32 @@ function chart(selector, data) {
 function brushend() {
   filtData = [];
   filtDataZips = [];
-
+//  ["Participant Count", "Favorite_Activity",
+//  "Likelihood_To_Purchase_At_Store","Raise_Awareness","Rate_Experience","Reference","Age_Range", "Zip Code", "City", "State"]
   console.log("Zips" + filtDataZips);
   selected.forEach(function(row) {
     var filtDataRow = [];
-    if (!(filtDataZips.includes(row.Zip))) {
+    if (!(filtDataZips.includes(row.value.Zip))) {
       filtDataRow.push(row);
-      filtDataZips.push(row.Zip);
+      filtDataZips.push(row.value.Zip);
       filtDataRow[0].Count = 1;
       filtData.push(filtDataRow);
-    } else {
-      filtData.forEach(function(row2) {
-          if (row.Zip == row2.Zip) {
-            filtDataRow = row2;
-          }
-        });
-        filtDataRow.Count += 1;
     }
   });
 
-  console.log("Tot");
-  console.log(filtData);
-
-  d3.select("#table").select("#tbody").selectAll("#tr").remove();
+  selected.forEach(function(row) {
+    filtData.forEach(function(row2) {
+      if (row.value.Zip == row2[0].value.Zip) {
+        row2[0].Count += 1;
+        if (row2[0].label == "attendee") {
+        row2[0].value.Favorite_Activity =
+        (parseInt(row2[0].value.Favorite_Activity) + parseInt(row.value.Favorite_Activity));
+        row2[0].value.Likelihood_To_Purchase_At_Store =
+        (parseInt(row.value.Likelihood_To_Purchase_At_Store) + parseInt(row2[0].value.Likelihood_To_Purchase_At_Store));
+      }
+      }
+    });
+  });
 
   chart("#table", filtData);
 
