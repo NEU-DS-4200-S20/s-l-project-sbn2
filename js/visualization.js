@@ -236,7 +236,8 @@ function chart(selector, data, bool) {
 
 //ends brushing
 function brushend() {
-  filtData = [];
+  filtDataAtt = [];
+  filtDataVen = [];
   filtDataZips = [];
 //  ["Participant Count", "Favorite_Activity",
 //  "Likelihood_To_Purchase_At_Store","Raise_Awareness","Rate_Experience","Reference","Age_Range", "Zip Code", "City", "State"]
@@ -289,13 +290,6 @@ function brushend() {
   });
 });
 
-
-/*'Under 18' : 1,
-        '19-25' : 2,
-        '26-35' : 3,
-        '36-50' : 4,
-        '51-64' : 5,
-        '65+' : 6*/
 
   chart("#table", filtDataAtt, true);
   chart("#table2", filtDataVen, false);
