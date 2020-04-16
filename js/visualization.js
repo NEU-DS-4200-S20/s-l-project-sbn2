@@ -8,17 +8,12 @@ var strokeWidth = 2;
 var table = d3.select("#table").append("table").classed("Attendee Information", true);
 table.append("thead");
 table.append("tbody");
-var table2 = d3.select("#table2").append("table").classed("Vendor Information", true);
-table2.append("thead");
-table2.append("tbody");
 var selected = [];
-var filtDataAtt = [];
-var filtDataVen = [];
-var filtDataZipsAtt = [];
-var filtDataZipsVen = [];
-var tableHeaderValues = ["Attendee Count", "Favorite Activity",
+var filtData = [];
+var filtDataZips = [];
+var tableHeaderValues = ["Participant Count", "Favorite Activity",
 "Likelihood To Purchase At Store","Raise Awareness","Rate Experience","Reference","Age Range", "Zip Code", "City", "State"]
-var tableHeaderValVen = ["Vendor Count", "List of Vendors in Area", "Zip Code", "City", "State"]
+
 //incorporate zoom function
 var zoom = d3.zoom()
 
@@ -158,18 +153,17 @@ function highlight() {
   );
 }
 
-//sets up table formatting, bool value represents if it is a vendor or attendee table
-function chart(selector, data, bool) {
+//sets up table formatting
+function chart(selector, data) {
+    console.log("Charted");
 
 
-    if (bool) {
-
-    console.log("Charted Att");
     table.select("thead")
         .selectAll("th")
         .data(tableHeaderValues)
         .enter().append("th")
         .text(function(d){
+          console.log(d);
           return d;
         });
 
@@ -184,136 +178,53 @@ function chart(selector, data, bool) {
          if (d[0].value.Zip.length == 4) {
            d[0].value.Zip = "0" + d[0].value.Zip;
          }
-         avgFavAct = convertvalues(d[0].value.Favorite_Activity_Array, 'Favorite_Activity');
-         console.log(avgFavAct);
-         avgLikelihood = convertvalues(d[0].value.Likelihood_To_Purchase_At_Store_Array, "Likelihood_To_Purchase_At_Store");
-         console.log(avgLikelihood);
-         mostPopularRef = convertvalues(d[0].value.Reference_Array, "Reference");
-         console.log(mostPopularRef);
-         mostCommonAgeRange = convertvalues(d[0].value.Age_Range_Array, "Age_Range");
-         console.log(mostCommonAgeRange);
-         avgAware = convertvalues(d[0].value.Raise_Awareness_Array, "Raise_Awareness");
-         console.log(avgAware);
-         avgExper = convertvalues(d[0].value.Rate_Experience_Array, "Rate_Experience");
-         console.log(avgExper);
-         return [d[0].Count, avgFavAct, avgLikelihood,
-         avgAware, avgExper, mostPopularRef, mostCommonAgeRange, d[0].value.Zip
+         return [d[0].Count, d[0].value.Favorite_Activity_Array, d[0].value.Likelihood_To_Purchase_At_Store_Array,
+         d[0].value.Raise_Awareness, d[0].value.Rate_Experience, d[0].value.Reference, d[0].value.Age_Range, d[0].value.Zip
          ,d[0].value.City,d[0].value.State];})
          .enter().append("td")
         .text(function(d){
          return d;
       });
-    } else {
-
-      console.log("Charted Ven");
-      table2.select("thead")
-          .selectAll("th")
-          .data(tableHeaderValVen)
-          .enter().append("th")
-          .text(function(d){
-            return d;
-          });
-
-      table2.select("tbody").selectAll("tr").remove();
-
-      table2.select("tbody")
-           .selectAll("tr").data(data)
-           .enter().append("tr")
-           .selectAll("td")
-           .data(function(d){
-              d[0].value.Zip = "" + d[0].value.Zip;
-              if (d[0].value.Zip.length == 4) {
-                 d[0].value.Zip = "0" + d[0].value.Zip;
-              }
-              return [d[0].Count, d[0].value.Vendor_Names, d[0].value.Zip,
-              d[0].value.City, d[0].value.State];
-            })
-            .enter().append("td")
-            .text(function(d){
-              return d;
-            });
-    }
 }
 
 //ends brushing
 function brushend() {
-  filtDataAtt = [];
-  filtDataVen = [];
-  filtDataZipsAtt = [];
-  filtDataZipsVen = [];
+  filtData = [];
+  filtDataZips = [];
 //  ["Participant Count", "Favorite_Activity",
 //  "Likelihood_To_Purchase_At_Store","Raise_Awareness","Rate_Experience","Reference","Age_Range", "Zip Code", "City", "State"]
-
-  console.log("Zips" + filtDataZipsAtt);
+  console.log("Zips" + filtDataZips);
   selected.forEach(function(row) {
     var filtDataRow = [];
-    if (row.label == "attendee") {
-      if (!(filtDataZipsAtt.includes(row.value.Zip))) {
-        filtDataRow.push(row);
-        filtDataZipsAtt.push(row.value.Zip);
-        filtDataRow[0].Count = 0;
-        filtDataRow[0].value.Favorite_Activity_Array = []
-        filtDataRow[0].value.Likelihood_To_Purchase_At_Store_Array = []
-        filtDataRow[0].value.Age_Range_Array = []
-        filtDataRow[0].value.Reference_Array = []
-        filtDataRow[0].value.Raise_Awareness_Array = []
-        filtDataRow[0].value.Rate_Experience_Array = []
-        filtDataAtt.push(filtDataRow);
-      }
-    } else {
-        filtDataRow.push(row);
-        filtDataZipsVen.push(row.value.Zip);
-        filtDataRow[0].Count = 0;
-        filtDataRow[0].value.Vendor_Names = []
-        filtDataVen.push(filtDataRow);
-      }
+    if (!(filtDataZips.includes(row.value.Zip))) {
+      filtDataRow.push(row);
+      filtDataZips.push(row.value.Zip);
+      filtDataRow[0].Count = 0;
+      filtDataRow[0].value.Favorite_Activity_Array = []
+      filtDataRow[0].value.Likelihood_To_Purchase_At_Store_Array = []
+      filtData.push(filtDataRow);
+    }
   });
 
   selected.forEach(function(row) {
-    filtDataAtt.forEach(function(row2) {
-      if ((row.value.Zip == row2[0].value.Zip) && (row.label == "attendee")) {
+    filtData.forEach(function(row2) {
+      if (row.value.Zip == row2[0].value.Zip) {
         row2[0].Count += 1;
+        if (row2[0].label == "attendee") {
         row2[0].value.Favorite_Activity_Array.push(row.value.Favorite_Activity);
         row2[0].value.Likelihood_To_Purchase_At_Store_Array.push(row.value.Favorite_Activity);
-        row2[0].value.Reference_Array.push(row.value.Reference);
-        row2[0].value.Age_Range_Array.push(row.value.Age_Range);
-        row2[0].value.Raise_Awareness_Array.push(row.value.Raise_Awareness);
-        row2[0].value.Rate_Experience_Array.push(row.value.Rate_Experience);
+      }
       }
     });
   });
 
-  selected.forEach(function(row) {
-    filtDataVen.forEach(function(row2) {
-      if (row.value.Zip == row2[0].value.Zip) {
-        row2[0].Count += 1;
-        row2[0].value.Vendor_Names.push(row.value.Vendor);
-      }
-  });
-});
-
-
-  chart("#table", filtDataAtt, true);
-  chart("#table2", filtDataVen, false);
-
-  console.log("end");
-}
-
 function convertvalues(drow, dlabel) {
-  console.log(dlabel);
-  intRow = []
-  drow.forEach(function(a) {
-    b = parseInt(a);
-    console.log("A");
-    intRow.push(b);
-  });
-  console.log(intRow);
-  var temp = intRow.reduce(function(a, b){
-        return a + b;
-    }, 0);
+  var temp = 0;
+  for(a in drow) {
+      temp+=a;
+    }
   temp = Math.round(temp/drow.length);
-  console.log("temp");
-  console.log(temp);
+
   if (dlabel == 'Favorite_Activity') {
     if(temp == 1)
       return "Interaction with local Vendors";
@@ -366,6 +277,18 @@ function convertvalues(drow, dlabel) {
   }
   else
     return temp;
+}
+
+/*'Under 18' : 1,
+        '19-25' : 2,
+        '26-35' : 3,
+        '36-50' : 4,
+        '51-64' : 5,
+        '65+' : 6*/
+
+  chart("#table", filtData);
+
+  console.log("end");
 }
 
 var legend = svg
