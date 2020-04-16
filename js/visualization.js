@@ -300,13 +300,20 @@ function brushend() {
 }
 
 function convertvalues(drow, dlabel) {
-  console.log(drow);
-  var temp = 0;
+  console.log(dlabel);
+  intRow = []
   drow.forEach(function(a) {
-    temp+=a;
+    b = parseInt(a);
+    console.log("A");
+    intRow.push(b);
   });
+  console.log(intRow);
+  var temp = intRow.reduce(function(a, b){
+        return a + b;
+    }, 0);
   temp = Math.round(temp/drow.length);
-
+  console.log("temp");
+  console.log(temp);
   if (dlabel == 'Favorite_Activity') {
     if(temp == 1)
       return "Interaction with local Vendors";
