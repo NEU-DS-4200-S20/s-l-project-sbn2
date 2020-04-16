@@ -69,7 +69,7 @@ d3.json("us.json", function(us) {
     console.log(vendorCodeList);
     drawMap(us, attendee, vendor, zipCodeList, vendorCodeList);
   });
-});
+}); 
 });
 //make brush function
 var brush = d3
