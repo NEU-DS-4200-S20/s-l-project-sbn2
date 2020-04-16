@@ -21,7 +21,7 @@ h1, h2, h3 {
   height: 100%;
 }
 
-/* Fork on GitHub ribbon via https://codepo8.github.io/css-fork-on-github-ribbon/# */  
+/* Fork on GitHub ribbon via https://codepo8.github.io/css-fork-on-github-ribbon/# */
 #forkongithub a{
 	background:#00F;
 	color:#fff;
@@ -82,7 +82,7 @@ h1, h2, h3 {
 	display: flex;
 	flex-wrap: wrap;
   }
-  
+
 .states {
   fill: #aaa;
 }
@@ -102,25 +102,38 @@ h1, h2, h3 {
 
 .vendor {
 	fill: blue;
+	opacity: .5;
 }
 
 
 
 circle.selected {
-	fill: red;
-  }
+	stroke: red;
+}
 
   .background {
 	fill: none;
-	pointer-events: all; 
+	pointer-events: all;
   }
-  
+
   .feature {
 	fill: #ccc;
 	cursor: pointer;
   }
-  
+
   .feature.active {
 	fill: red;
   }
+	
+#table {
+	background-color: rgba(255,165,0,.3);
+}
 
+#table2 {
+	background-color: rgba(0,100,255,.3);
+}
+td, th {
+    padding: 1px 4px;
+    border: 1px black solid;
+
+}
