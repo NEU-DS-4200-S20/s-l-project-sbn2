@@ -1,6 +1,7 @@
 var width =  960;
 var height = 500;
 var r = 5;
+var strokeWidth = 2;
 
 
 //make table for displaying data highlighted on map
@@ -24,7 +25,7 @@ var svg = d3
   .append("g")
   .call(zoom.on("zoom", function() {
     svg.attr("transform", d3.event.transform);
-    d3.selectAll("circle").transition().duration(500).attr("r", r/d3.event.transform.k);
+    d3.selectAll("circle").transition().duration(500).attr("r", r/d3.event.transform.k).style("stroke-width", strokeWidth/d3.event.transform.k);
   }))
   .on("dblclick.zoom", function(){
     svg.transition().duration(750).call(zoom.transform, d3.zoomIdentity);

@@ -102,13 +102,14 @@ h1, h2, h3 {
 
 .vendor {
 	fill: blue;
+	opacity: .5;
 }
 
 
 
 circle.selected {
-	fill: red;
-  }
+	stroke: red;
+}
 
   .background {
 	fill: none;
