@@ -1,4 +1,4 @@
-var width =  960;
+var width = 960;
 var height = 500;
 var r = 5;
 var strokeWidth = 2;
@@ -16,11 +16,11 @@ var filtDataAtt = [];
 var filtDataVen = [];
 
 var filtDataZips = [];
-var tableHeaderValues = ["Attendee Count", "Favorite Activity",
-"Likelihood To Purchase At Store","Raise Awareness","Rate Experience","Reference","Age Range", "Zip Code", "City", "State"]
+var tableHeaderValues = ["Attendee Count", "Favorite Activity", "Likelihood To Purchase At Store","Raise Awareness","Rate Experience","Reference","Age Range", "Zip Code", "City", "State"]
 var tableHeaderValVen = ["Vendor Count", "List of Vendors in Area", "Zip Code", "City", "State"]
 //incorporate zoom function
-var zoom = d3.zoom()
+
+var zoom = d3.zoom().scaleExtent([1, 20])
 
 var svg = d3
   .select("#map-container")
@@ -32,7 +32,7 @@ var svg = d3
     svg.attr("transform", d3.event.transform);
     d3.selectAll("circle").transition().duration(500).attr("r", r/d3.event.transform.k).style("stroke-width", strokeWidth/d3.event.transform.k);
   }))
-  .on("dblclick.zoom", function(){
+  .on("dblclick.zoom", function () {
     svg.transition().duration(750).call(zoom.transform, d3.zoomIdentity);
   });
 
@@ -44,7 +44,7 @@ var projection = d3
 var path = d3.geoPath().projection(projection);
 
 //read dataset to display datapoints on map
-d3.json("us.json", function(us) {
+d3.json("us.json", function (us) {
   console.log(us);
   //Error
   d3.csv("data/Attendee Information Ver 2.csv", function(attendee) {
@@ -58,19 +58,19 @@ d3.json("us.json", function(us) {
           zipCodeList.push(zipCodePair);
     });
 
-    var vendorCodeList = [];
-    vendor.forEach(function(row) {
-          var zipCodePair = [];
-          zipCodePair.push(parseFloat(Object.values(row)[2]));
-          zipCodePair.push(parseFloat(Object.values(row)[3]));
-          vendorCodeList.push(zipCodePair);
+      var vendorCodeList = [];
+      vendor.forEach(function (row) {
+        var zipCodePair = [];
+        zipCodePair.push(parseFloat(Object.values(row)[2]));
+        zipCodePair.push(parseFloat(Object.values(row)[3]));
+        vendorCodeList.push(zipCodePair);
+      });
+      console.log(zipCodeList);
+      console.log(vendorCodeList);
+      drawMap(us, attendee, vendor, zipCodeList, vendorCodeList);
     });
-    console.log(zipCodeList);
-    console.log(vendorCodeList);
-    drawMap(us, attendee, vendor, zipCodeList, vendorCodeList);
   });
 }); 
-});
 //make brush function
 var brush = d3
   .brush()
@@ -93,22 +93,22 @@ function drawMap(us, attendee, vendor, zipCodeList, vendorCodeList) {
   mapGroup
     .append("path")
     .datum(
-      topojson.mesh(us, us.objects.states, function(a, b) {
+      topojson.mesh(us, us.objects.states, function (a, b) {
         return a !== b;
       })
     )
     .attr("id", "state-borders")
     .attr("d", path);
 
-    let mapData = [];
-    for(let d of attendee ) {
-      let temp = {label: "attendee", value: d}
-      mapData.push(temp);
-    }
-    for(let d of vendor ) {
-      let temp = {label: "vendor", value: d}
-      mapData.push(temp);
-    }
+  let mapData = [];
+  for (let d of attendee) {
+    let temp = { label: "attendee", value: d }
+    mapData.push(temp);
+  }
+  for (let d of vendor) {
+    let temp = { label: "vendor", value: d }
+    mapData.push(temp);
+  }
 
    //displays datapoints as circles
 
@@ -116,16 +116,16 @@ function drawMap(us, attendee, vendor, zipCodeList, vendorCodeList) {
     .selectAll("circle")
     .data(mapData).enter()
     .append("circle")
-    .attr("class", function(d) {return d.label})
-    .attr("cx", function(d) {
+    .attr("class", function (d) { return d.label })
+    .attr("cx", function (d) {
 
       return projection([d.value.Longitude, d.value.Latitude])[0];
     })
-    .attr("cy", function(d) {
+    .attr("cy", function (d) {
       return projection([d.value.Longitude, d.value.Latitude])[1];
     })
-    .attr("r", function(d) {if(d.label == "attendee") {return 4} else {return 4}});
-    //.style("fill", fillFunction);
+    .attr("r", function (d) { if (d.label == "attendee") { return 4 } else { return 4 } });
+  //.style("fill", fillFunction);
 
   svg.append("g").call(brush);
 }
@@ -144,12 +144,12 @@ function highlight() {
   //console.log(circles_temp);
   selected = [];
   circles.classed(
-    "selected", function(d) {
-    //d =>
+    "selected", function (d) {
+      //d =>
       var bool = x0 <= projection([d.value.Longitude, d.value.Latitude])[0] &&
-      projection([d.value.Longitude, d.value.Latitude])[0] <= x1 &&
-      y0 <= projection([d.value.Longitude, d.value.Latitude])[1] &&
-      projection([d.value.Longitude, d.value.Latitude])[1] <= y1
+        projection([d.value.Longitude, d.value.Latitude])[0] <= x1 &&
+        y0 <= projection([d.value.Longitude, d.value.Latitude])[1] &&
+        projection([d.value.Longitude, d.value.Latitude])[1] <= y1
       if (bool) {
         selected.push(d);
       }
@@ -244,7 +244,7 @@ function brushend() {
 //  "Likelihood_To_Purchase_At_Store","Raise_Awareness","Rate_Experience","Reference","Age_Range", "Zip Code", "City", "State"]
 
   console.log("Zips" + filtDataZips);
-  selected.forEach(function(row) {
+  selected.forEach(function (row) {
     var filtDataRow = [];
     if (row.label == "attendee") {
       if (!(filtDataZips.includes(row.value.Zip))) {
@@ -380,7 +380,7 @@ var legend = svg
   ])
   .enter()
   .append("g")
-  .attr("transform", function(d, i) {
+  .attr("transform", function (d, i) {
     return "translate(0," + i * 20 + ")";
   });
 legend
@@ -390,7 +390,7 @@ legend
   .style("fill", function(d) {
     return d.color
   });
-  legend
+legend
   .append("text")
   .attr("x", 24)
   .attr("y", 9)
