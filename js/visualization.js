@@ -174,7 +174,7 @@ function chart(selector, data, bool) {
         });
 
     table.select("tbody").selectAll("tr").remove();
-
+//appends data to table
     table.select("tbody")
        .selectAll("tr").data(data)
        .enter().append("tr")
@@ -298,6 +298,8 @@ function brushend() {
   console.log("end");
 }
 
+//function converts values from its numerical average to a string 
+//only applicable to specific columns
 function convertvalues(drow, dlabel) {
   console.log(dlabel);
   intRow = []
@@ -367,6 +369,7 @@ function convertvalues(drow, dlabel) {
     return temp;
 }
 
+//legend displays information regarding the map plots
 var legend = svg
   .append("g")
   .attr("class", "legend")
