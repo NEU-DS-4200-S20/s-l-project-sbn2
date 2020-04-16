@@ -14,7 +14,8 @@ table2.append("tbody");
 var selected = [];
 var filtDataAtt = [];
 var filtDataVen = [];
-var filtDataZips = [];
+var filtDataZipsAtt = [];
+var filtDataZipsVen = [];
 var tableHeaderValues = ["Attendee Count", "Favorite Activity",
 "Likelihood To Purchase At Store","Raise Awareness","Rate Experience","Reference","Age Range", "Zip Code", "City", "State"]
 var tableHeaderValVen = ["Vendor Count", "List of Vendors in Area", "Zip Code", "City", "State"]
@@ -236,18 +237,20 @@ function chart(selector, data, bool) {
 
 //ends brushing
 function brushend() {
-  filtData = [];
-  filtDataZips = [];
+  filtDataAtt = [];
+  filtDataVen = [];
+  filtDataZipsAtt = [];
+  filtDataZipsVen = [];
 //  ["Participant Count", "Favorite_Activity",
 //  "Likelihood_To_Purchase_At_Store","Raise_Awareness","Rate_Experience","Reference","Age_Range", "Zip Code", "City", "State"]
 
-  console.log("Zips" + filtDataZips);
+  console.log("Zips" + filtDataZipsAtt);
   selected.forEach(function(row) {
     var filtDataRow = [];
-    if (!(filtDataZips.includes(row.value.Zip))) {
-      if (row.label == "attendee") {
+    if (row.label == "attendee") {
+      if (!(filtDataZipsAtt.includes(row.value.Zip))) {
         filtDataRow.push(row);
-        filtDataZips.push(row.value.Zip);
+        filtDataZipsAtt.push(row.value.Zip);
         filtDataRow[0].Count = 0;
         filtDataRow[0].value.Favorite_Activity_Array = []
         filtDataRow[0].value.Likelihood_To_Purchase_At_Store_Array = []
@@ -256,19 +259,19 @@ function brushend() {
         filtDataRow[0].value.Raise_Awareness_Array = []
         filtDataRow[0].value.Rate_Experience_Array = []
         filtDataAtt.push(filtDataRow);
-      } else {
+      }
+    } else {
         filtDataRow.push(row);
-        filtDataZips.push(row.value.Zip);
+        filtDataZipsVen.push(row.value.Zip);
         filtDataRow[0].Count = 0;
         filtDataRow[0].value.Vendor_Names = []
         filtDataVen.push(filtDataRow);
       }
-    }
   });
 
   selected.forEach(function(row) {
     filtDataAtt.forEach(function(row2) {
-      if (row.value.Zip == row2[0].value.Zip) {
+      if ((row.value.Zip == row2[0].value.Zip) && (row.label == "attendee")) {
         row2[0].Count += 1;
         row2[0].value.Favorite_Activity_Array.push(row.value.Favorite_Activity);
         row2[0].value.Likelihood_To_Purchase_At_Store_Array.push(row.value.Favorite_Activity);
@@ -289,13 +292,6 @@ function brushend() {
   });
 });
 
-
-/*'Under 18' : 1,
-        '19-25' : 2,
-        '26-35' : 3,
-        '36-50' : 4,
-        '51-64' : 5,
-        '65+' : 6*/
 
   chart("#table", filtDataAtt, true);
   chart("#table2", filtDataVen, false);
