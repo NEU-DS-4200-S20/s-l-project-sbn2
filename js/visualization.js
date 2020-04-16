@@ -14,8 +14,8 @@ table2.append("tbody");
 var selected = [];
 var filtDataAtt = [];
 var filtDataVen = [];
-var filtDataZipsAtt = [];
-var filtDataZipsVen = [];
+
+var filtDataZips = [];
 var tableHeaderValues = ["Attendee Count", "Favorite Activity",
 "Likelihood To Purchase At Store","Raise Awareness","Rate Experience","Reference","Age Range", "Zip Code", "City", "State"]
 var tableHeaderValVen = ["Vendor Count", "List of Vendors in Area", "Zip Code", "City", "State"]
@@ -239,18 +239,17 @@ function chart(selector, data, bool) {
 function brushend() {
   filtDataAtt = [];
   filtDataVen = [];
-  filtDataZipsAtt = [];
-  filtDataZipsVen = [];
+  filtDataZips = [];
 //  ["Participant Count", "Favorite_Activity",
 //  "Likelihood_To_Purchase_At_Store","Raise_Awareness","Rate_Experience","Reference","Age_Range", "Zip Code", "City", "State"]
 
-  console.log("Zips" + filtDataZipsAtt);
+  console.log("Zips" + filtDataZips);
   selected.forEach(function(row) {
     var filtDataRow = [];
     if (row.label == "attendee") {
-      if (!(filtDataZipsAtt.includes(row.value.Zip))) {
+      if (!(filtDataZips.includes(row.value.Zip))) {
         filtDataRow.push(row);
-        filtDataZipsAtt.push(row.value.Zip);
+        filtDataZips.push(row.value.Zip);
         filtDataRow[0].Count = 0;
         filtDataRow[0].value.Favorite_Activity_Array = []
         filtDataRow[0].value.Likelihood_To_Purchase_At_Store_Array = []
@@ -262,7 +261,7 @@ function brushend() {
       }
     } else {
         filtDataRow.push(row);
-        filtDataZipsVen.push(row.value.Zip);
+        filtDataZips.push(row.value.Zip);
         filtDataRow[0].Count = 0;
         filtDataRow[0].value.Vendor_Names = []
         filtDataVen.push(filtDataRow);
